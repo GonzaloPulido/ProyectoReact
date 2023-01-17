@@ -1,0 +1,1059 @@
+//--------- VARIABLES ---------
+$amarillo: #FFBF00
+//--------- VARIABLES ---------
+// --------- FORMATEO ---------
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    list-style: none
+a
+    color: $amarillo
+a:link, a:visited, a:active
+    text-decoration: none
+// --------- FORMATEO ---------
+// --------- FUENTES ---------
+@font-face
+    font-family: "Harry P"
+    src: url('./fonts/HARRYP.TTF') format("truetype")
+    font-weight: normal
+    font-style: normal
+@font-face
+    font-family: 'Benne'
+    src: url('./fonts/Benne.ttf') format("truetype")
+    font-weight: normal
+    font-style: normal
+// --------- FUENTES ---------
+// --------- HEADER ---------
+header
+    width: 100%
+    height: 15vh
+    padding: 1%
+    background-image: url("./img/fondo_head.png")
+    display: flex
+    align-items: center
+    justify-content: space-between
+.nav_header
+    width: 60%
+.apartados_head
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-family: "Harry P"
+    font-size: 2.7rem
+.iconos_head
+    width: 4%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-size: 1.5rem
+
+.logo
+    width: 85px
+
+.iconos
+    color: $amarillo
+
+.respmenu
+    display: none
+
+// --------- HEADER ---------
+// --------- FOOTER ---------
+footer
+    width: 100%
+    height: 15vh
+    padding: 1%
+    background-image: url("./img/fondo_head.png")
+    display: flex
+    align-items: center
+    justify-content: space-between
+.nav_footer
+    width: 60%
+.apartados_foot
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-family: "Harry P"
+    font-size: 2.7rem
+
+.iconos_foot
+    width: 5%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-size: 1.5rem
+// --------- FOOTER ---------
+// --------- MAIN ---------
+main
+    min-height: 70vh
+    padding: 3%
+    background-image: url("./img/fondo_body.jpg")
+    background-repeat: no-repeat
+    background-attachment: fixed
+// --------- MAIN ---------
+// --------- INICIO ---------
+#inicio
+    height: 700px
+    padding: 2%
+    margin: auto
+    width: 40%
+    border: 3px solid black
+    border-radius: 15px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-around
+    min-width: 40vh
+
+#caratula
+    width: 50%
+
+#inicio>p
+    font-family: Benne
+    font-size: 1.5rem
+    text-align: center
+#boton_inicio
+    text-align: center
+    font-family: Benne
+    font-size: 1.5rem
+    color: black
+    border: black 3px solid
+    border-radius: 10px
+    width: 25%
+    height: 6%
+    padding: 1%
+
+// --------- INICIO ---------
+// --------- TITULO ---------
+.titulo
+    text-align: center
+    font-family: "Harry P"
+    font-size: 2.8rem
+    color: $amarillo
+    -webkit-text-stroke: 1px black
+    margin-bottom: 2%
+// --------- TITULO ---------
+// --------- LISTADOS ---------
+.padre_listados
+    display: flex
+    align-items: center
+    justify-content: space-evenly
+    flex-wrap: wrap
+    height: 100%
+    gap: 1rem
+    position: relative
+
+
+.elemento
+    padding: 1%
+    width: 30%
+    min-height: 32vh
+    border: black 3px solid
+    border-radius: 10px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    position: relative
+
+
+.foto
+    width: 100%
+
+
+.firma
+    width: 100%
+
+
+.div_imagen
+    width: 25%
+
+.titulos
+    width: 60%
+
+.titulo_elemento
+    text-align: center
+    font-family: Benne
+    font-size: 2.5rem
+
+.button
+    position: absolute
+    right: 2%
+    bottom: 4%
+    padding: 2%
+    text-align: center
+    font-family: Benne
+    font-size: 1.5rem
+    color: black
+    border: black 3px solid
+    border-radius: 10px
+.paginatebtn 
+    display: flex
+    justify-content: space-around
+    width: 20%
+    position: absolute
+    top: 236vh
+    text-align: center 
+.singlebtn
+    width: 100px
+// --------- LISTADOS ---------
+// --------- CASAS ---------
+.casas
+    padding: 3%
+    display: flex
+    align-items: center
+    justify-content: space-around
+    font-family: Benne
+    font-size: 1.5rem
+    border: black 3px solid
+    border-radius: 10px
+.container_casa
+    text-align: center
+
+.titulo_casa
+    margin-top: 10%
+
+// --------- CASAS ---------
+// --------- PERSONAJE ---------
+.elementos_personaje
+    padding: 2%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    font-family: Benne
+    font-size: 1.7rem
+    border: black 3px solid
+    border-radius: 10px
+
+.varita1,.varita2
+    max-height: 250px
+.varita2
+    transform: rotate(180deg)
+
+.div_personaje
+    width: 15%
+    display: flex
+    flex-direction: column
+    align-content: center
+    align-items: center
+
+.lista1_personaje
+    display: flex
+    align-content: center
+    gap: 0.5rem
+
+.foto_personaje
+    max-width: 16vh
+.firma_personaje
+    width: 70%
+
+// --------- PERSONAJE ---------
+// --------- REGISTRO ---------
+.registro_padre
+    padding: 2%
+    margin: auto
+    width: 30%
+    border: black 3px solid
+    border-radius: 10px
+.registro
+    margin: auto
+    width: 80%
+    font-family: Benne
+    font-size: 1.8rem
+    display: flex
+    flex-direction: column
+
+input,textarea
+    padding: 1%
+    width: 100%
+
+label
+    display: block
+    padding: 7px
+    margin-bottom: 8px
+
+.enlace_registro
+    font-size: 1.3rem
+    color: darkblue
+
+// --------- REGISTRO ---------
+// --------- LOGIN ---------
+.inicio_sesion_padre
+    padding: 1%
+    margin: auto
+    width: 40%
+    border: black 3px solid
+    border-radius: 10px
+
+.inicio_sesion
+    width: 60%
+    margin: auto
+    font-family: 'Benne'
+    font-size: 1.8rem
+
+.recordar
+    display: flex
+    align-items: center
+
+.input_recordar
+    width: 7%
+    margin-bottom: 1%
+
+.enlaces_inicio_sesion
+    font-size: 1.3rem
+    color: darkblue
+
+
+// --------- LOGIN ---------
+// --------- CONTACTANOS---------
+.contactos_padre
+    font-family: 'Benne'
+    font-size: 1.8rem
+    padding: 2%
+    width: 70%
+    display: flex
+    align-content: center
+    align-items: center
+    justify-content: space-around
+    border: black 3px solid
+    border-radius: 10px
+    margin: auto
+
+.elementos_contactos
+    width: 25%
+
+.fa-phone-volume,.fa-envelope,.fa-map-marker-alt
+    margin-right: 20px
+    margin-bottom: 20px
+
+.lista_info
+    margin-bottom: 30px
+
+.titulo_redes
+    margin-bottom: 8px
+
+
+.lista_iconos_contacto
+    width: 30%
+    display: flex
+    align-content: center
+    align-items: center
+    justify-content: space-around
+
+.varita_contacto
+    max-height: 400px
+.redes
+    color: black
+
+// --------- CONTACTANOS --------
+// --------- ERROR 404 ---------
+.diverror
+    margin-top: 11vw
+    display: flex
+    width: 100%
+    justify-content: space-around
+#botonerror
+    font-family: Benne
+    color: black
+    font-size: 1.4rem
+    border: 3px black solid
+    border-radius: 10px
+    padding: 2px
+
+    
+    
+
+
+@keyframes movimiento_snitch
+
+    0%
+        transform: translate(0,0)
+
+    25%
+        transform: translate(750px,200px)
+
+    50%
+        transform: translate(1150px,0px)
+
+    75%
+        transform: translate(750px,200px)
+
+    100%
+        transform: translate(0,0)
+
+.snitch
+    width: 10%
+    margin-top: 120px
+    animation: movimiento_snitch 5s infinite
+
+// --------- ERROR 404 ---------
+// --------------------------------------------------------------------------------------------------------------------
+// --------- RESPONSIVE 1350px ---------
+// --------- HEADER ---------
+@media screen and (max-width: 1350px)
+    .nav_header
+        width: 60%
+    .apartados_head
+        font-size: 2.2rem
+    .iconos_head
+        width: 5%
+        font-size: 1.4rem
+    .logo
+        width: 80px
+    .iconos
+        color: $amarillo
+    // --------- HEADER ---------
+    // --------- FOOTER ---------
+    .nav_footer
+        width: 60%
+    .apartados_foot
+        font-size: 2.2rem
+    .iconos_foot
+        width: 6%
+        font-size: 1.4rem
+    // --------- FOOTER ---------
+    // --------- INICIO ---------
+    #caratula
+        width: 40%
+    #inicio
+        height: 600px
+        width: 50%
+        gap: 1rem
+
+    #inicio>p
+        width: 80%
+        font-size: 1.4rem
+
+    #boton_inicio
+        font-size: 1.4rem
+        width: 30%
+        height: 9%
+        padding: 2%
+
+    // --------- INICIO ---------
+    // --------- TITULO ---------
+    .titulo
+        font-size: 2.2rem
+    // --------- TITULO ---------
+    // --------- LISTADOS ---------
+    .elemento
+        width: 35%
+        min-height: 25vh
+        min-width: 450px
+
+    .div_imagen
+        width: 22%
+
+    .titulos
+        width: 70%
+
+    .titulo_elemento
+        font-size: 2.2rem
+
+    .button
+        font-size: 1.3rem
+
+
+    // --------- LISTADOS ---------
+    // --------- CASAS ---------
+    .section_casas
+        width: 60%
+        margin: auto
+    .casas
+        gap: 5rem
+        flex-wrap: wrap
+        font-size: 1.3rem
+    .titulo_casa
+        margin-top: 10%
+    .logo_casas
+        width: 90%
+
+    // --------- CASAS ---------
+    // --------- PERSONAJE ---------
+    .elementos_personaje
+        text-align: center
+        flex-direction: column
+        margin: auto
+        width: 50%
+        padding: 2%
+        font-size: 1.5rem
+    .elementos_personaje>ul
+        margin: auto
+        width: 60%
+    .elementos_personaje>ul
+        margin-left: 20%
+        width: 100%
+    .varita1,.varita2
+        max-height: 200px
+        max-width: 100px
+        transform: rotate(90deg)
+    .varita2
+        transform: rotate(270deg)
+
+    .div_personaje
+        padding: 2%
+        width: 30%
+
+    .foto_personaje
+        max-width: 20vh
+    .firma_personaje
+        width: 100%
+
+    // --------- PERSONAJE ---------
+    // --------- REGISTRO ----------
+    .registro_padre
+        width: 35%
+    .registro
+        width: 80%
+        font-size: 1.3rem
+
+    input,textarea
+        padding: 2%
+        width: 90%
+
+    .enlace_registro
+        font-size: 1rem
+
+    // --------- REGISTRO ---------
+    // --------- LOGIN ---------
+    .inicio_sesion_padre
+        width: 30%
+
+    .inicio_sesion
+        width: 80%
+        font-size: 1.3rem
+
+    .input_recordar
+        width: 7%
+        margin-bottom: 2%
+
+    .enlaces_inicio_sesion
+        font-size: 1rem
+
+
+    // --------- LOGIN ---------
+    // --------- CONTACTANOS---------
+    .contactos_padre
+        font-size: 1.4rem
+        width: 50%
+        flex-direction: column-reverse
+
+    .lista_iconos_contacto
+        width: 35%
+
+    .varita_contacto
+        height: 300px
+        transform: rotate(90deg)
+
+    // --------- CONTACTANOS --------
+    // --------- ERROR 404 ---------
+    @keyframes movimiento_snitch
+
+        0%
+            transform: translate(0,0)
+
+        25%
+            transform: translate(550px,150px)
+
+        50%
+            transform: translate(800px,0px)
+
+        75%
+            transform: translate(550px,150px)
+
+        100%
+            transform: translate(0,0)
+
+    .snitch
+        width: 20%
+        animation: movimiento_snitch 6s infinite
+
+    // --------- ERROR 404 ---------
+// --------- RESPONSIVE 1350px ---------
+// ---------------------------------------------------------------------------------------------------------------------
+// --------- RESPONSIVE 1000px ---------
+// --------- HEADER ---------
+@media screen and (max-width: 1000px)
+    header
+        padding-right: 25px
+    .nav_header
+        display: none
+    .apartados_head
+        font-size: 2.2rem
+    .iconos_head
+        width: 5%
+        font-size: 1.4rem
+    .logo
+        width: 80px
+    .respmenu a
+        text-decoration: none
+        display: block
+        padding: 10px 20px
+        border-bottom: 2px solid black
+        width: 300px
+        background-color: #fad26d
+        font-family: Benne
+        color: black
+        text-align: center
+
+
+    .respmenu input[type="checkbox"], .respmenu .fa-bars, .respmenu .fa-times
+        position: absolute
+        box-sizing: border-box
+        margin: 0
+        padding: 0
+        right: 0
+        top: 9px
+        width: 27px
+        height: 27px
+
+
+    .respmenu .fa-bars, .respmenu .fa-times
+        font-size: 1.7rem
+        pointer-events: none
+
+
+    .respmenu input[type="checkbox"]
+        opacity: 0
+
+
+    .respmenu
+        display: block
+        color: $amarillo
+        position: relative
+        background: #123456
+        min-height: 48px
+
+
+    .respmenu nav
+        display: none
+
+
+
+
+    .respmenu input:checked ~ nav
+        display: block
+        position: absolute
+        border: 1px black solid
+        font-size: 1.7rem
+        right: 3px
+        top: 40px
+       
+
+
+    .respmenu input:checked ~ .fa-bars
+        display: none
+
+
+
+    .respmenu input:not(:checked) ~ .fa-times
+        display: none
+
+
+    // --------- HEADER ---------
+    // --------- FOOTER ---------
+    .nav_footer
+        display: none
+    footer
+        position: relative
+    .iconos_foot
+        gap: 1rem
+        position: absolute
+        left: 46%
+    .iconos_foot>li
+        font-size: 2rem
+
+    // --------- FOOTER ---------
+    // --------- INICIO ---------
+    #caratula
+        width: 60%
+    #inicio
+        height: 570px
+        width: 45%
+
+
+    #inicio>p
+        width: 90%
+
+    #boton_inicio
+        width: 40%
+        height: 7%
+        padding: 2%
+
+    // --------- INICIO ---------
+    // --------- LISTADOS ---------
+    .elemento
+        width: 40%
+        min-height: 25vh
+        min-width: 500px
+
+    .div_imagen
+        width: 20%
+
+    .titulos
+        width: 80%
+
+    .titulo_elemento
+        font-size: 2.2rem
+
+    .button
+        font-size: 1.4rem
+
+
+    // --------- LISTADOS ---------
+    // --------- CASAS ---------
+    .section_casas
+        width: 50%
+    .casas
+        gap: 3rem
+    .logo_casas
+        width: 100%
+
+    // --------- CASAS ---------
+    // --------- REGISTRO ----------
+    .registro_padre
+        width: 40%
+    .registro
+        width: 100%
+        font-size: 1.5rem
+
+    input,textarea
+        padding: 2%
+        width: 90%
+
+    .enlace_registro
+        font-size: 1.1rem
+
+    // --------- REGISTRO ---------
+    // --------- LOGIN ---------
+    .inicio_sesion_padre
+        margin-top: 100px
+        width: 50%
+
+    .inicio_sesion
+        width: 80%
+        font-size: 1.3rem
+
+    .input_recordar
+        width: 7%
+        margin-bottom: 2%
+
+    .enlaces_inicio_sesion
+        font-size: 1.2rem
+
+
+    // --------- LOGIN ---------
+    // --------- CONTACTANOS---------
+    .contactos_padre
+        font-size: 1.5rem
+        width: 45%
+
+    .lista_iconos_contacto
+        width: 40%
+
+    .varita_contacto
+        height: 250px
+        transform: rotate(90deg)
+
+    // --------- CONTACTANOS --------
+    // --------- ERROR 404 ---------
+    @keyframes movimiento_snitch
+
+        0%
+            transform: translate(0,0)
+
+        25%
+            transform: translate(300px, 100px)
+
+        50%
+            transform: translate(600px,0px)
+
+        75%
+            transform: translate(300px, 100px)
+
+        100%
+            transform: translate(0,0)
+
+    .snitch
+        width: 30%
+        animation: movimiento_snitch 5s infinite
+
+// --------- ERROR 404 ---------
+// --------- RESPONSIVE 1000px ---------
+// ---------------------------------------------------------------------------------------------------------------------
+// --------- RESPONSIVE 700px ---------
+// --------- HEADER ---------
+@media screen and (max-width: 700px)
+    .nav_header
+        width: 60%
+    .apartados_head
+        font-size: 2.2rem
+    .iconos_head
+        width: 5%
+        font-size: 1.4rem
+    .logo
+        width: 80px
+    .iconos
+        color: $amarillo
+    // --------- HEADER ---------
+    // --------- FOOTER ---------
+    .iconos_foot
+        position: absolute
+        left: 45%
+        gap: 1rem
+    // --------- FOOTER ---------
+    // --------- INICIO ---------
+    #caratula
+        width: 60%
+    #inicio
+        height: 570px
+        width: 45%
+
+
+    #inicio>p
+        width: 90%
+
+    #boton_inicio
+        width: 40%
+        height: 7%
+        padding: 2%
+
+    // --------- INICIO ---------
+    // --------- LISTADOS ---------
+    .elemento
+        width: 30%
+        min-height: 25vh
+        min-width: 500px
+
+    .div_imagen
+        width: 20%
+
+    .titulos
+        width: 80%
+
+    .titulo_elemento
+        font-size: 2.2rem
+
+    .button
+        font-size: 1.5rem
+
+
+    // --------- LISTADOS ---------
+    // --------- CASAS ---------
+    .section_casas
+        width: 50%
+    .casas
+        gap: 3rem
+    .logo_casas
+        width: 90%
+    .titulo_casa
+        font-size: 1.8rem
+
+    // --------- CASAS ---------
+    // --------- REGISTRO ----------
+    .registro_padre
+        width: 50%
+    .registro
+        width: 100%
+        font-size: 1.5rem
+
+    input,textarea
+        padding: 2%
+        width: 90%
+
+    .enlace_registro
+        font-size: 1.1rem
+
+    // --------- REGISTRO ---------
+    // --------- LOGIN ---------
+    .inicio_sesion_padre
+        margin-top: 100px
+        width: 60%
+
+    .inicio_sesion
+        width: 80%
+        font-size: 1.3rem
+
+    .input_recordar
+        width: 7%
+        margin-bottom: 2%
+
+    .enlaces_inicio_sesion
+        font-size: 1.2rem
+
+
+    // --------- LOGIN ---------
+    // --------- CONTACTANOS---------
+    .contactos_padre
+        font-size: 1.5rem
+        width: 60%
+
+    .lista_iconos_contacto
+        width: 40%
+
+    .varita_contacto
+        height: 250px
+        transform: rotate(90deg)
+
+    // --------- CONTACTANOS --------
+    // --------- ERROR 404 ---------
+    @keyframes movimiento_snitch
+
+        0%
+            transform: translate(250px,0)
+
+        25%
+            transform: translate(250px, 200px)
+
+        50%
+            //transform: translate(600px,0px)
+        75%
+            transform: translate(250px, 0px)
+
+
+        100%
+            //transform: translate(0,0)
+    .snitch
+        width: 30%
+        animation: movimiento_snitch 4s infinite
+
+// --------- ERROR 404 ---------
+// --------- RESPONSIVE 700px ---------
+// ---------------------------------------------------------------------------------------------------------------------
+// --------- RESPONSIVE 500px ---------
+// --------- HEADER ---------
+@media screen and (max-width: 501px)
+    .nav_header
+        width: 60%
+    .apartados_head
+        font-size: 2.2rem
+    .iconos_head
+        width: 5%
+        font-size: 1.4rem
+    .logo
+        width: 80px
+    .iconos
+        color: $amarillo
+    // --------- HEADER ---------
+    // --------- FOOTER ---------
+    .nav_footer
+        width: 60%
+    .apartados_foot
+        font-size: 2.2rem
+    .iconos_foot
+        width: 6%
+        font-size: 1.4rem
+    // --------- FOOTER ---------
+    // --------- INICIO ---------
+    #caratula
+        width: 50%
+    #inicio
+        height: 570px
+        width: 45%
+
+
+    #inicio>p
+        width: 90%
+
+    #boton_inicio
+        width: 40%
+        height: 7%
+        padding: 2%
+
+    // --------- INICIO ---------
+    // --------- LISTADOS ---------
+    .elemento
+        width: 30%
+        min-height: 25vh
+        min-width: 400px
+
+    .div_imagen
+        width: 30%
+
+    .titulos
+        width: 90%
+
+    .titulo_elemento
+        font-size: 2rem
+
+    .button
+        font-size: 1.5rem
+
+
+    // --------- LISTADOS ---------
+    // --------- CASAS ---------
+    .section_casas
+        width: 60%
+    .casas
+        gap: 3rem
+    .logo_casas
+        width: 90%
+    .titulo_casa
+        font-size: 1.6rem
+
+    // --------- CASAS ---------
+    // --------- REGISTRO ----------
+    .registro_padre
+        width: 70%
+    .registro
+        width: 100%
+        font-size: 1.5rem
+
+    input,textarea
+        padding: 2%
+        width: 90%
+
+    .enlace_registro
+        font-size: 1.4rem
+
+    // --------- REGISTRO ---------
+    // --------- LOGIN ---------
+    .inicio_sesion_padre
+        margin-top: 100px
+        width: 80%
+
+    .inicio_sesion
+        width: 80%
+        font-size: 1.4rem
+
+    .input_recordar
+        width: 7%
+        margin-bottom: 2%
+
+    .enlaces_inicio_sesion
+        font-size: 1.3rem
+
+
+    // --------- LOGIN ---------
+    // --------- CONTACTANOS---------
+    .contactos_padre
+        font-size: 1.5rem
+        width: 80%
+
+    .lista_iconos_contacto
+        width: 40%
+
+    .varita_contacto
+        height: 250px
+        transform: rotate(90deg)
+
+    // --------- CONTACTANOS --------
+    // --------- ERROR 404 ---------
+    .diverror
+        margin-top: 30vh
+    @keyframes movimiento_snitch
+
+        0%
+            transform: translate(150px,0)
+
+        25%
+            transform: translate(150px, 200px)
+
+        75%
+            transform: translate(150px, 0px)
+
+    .snitch
+        width: 30%
+        animation: movimiento_snitch 4s infinite
+
+// --------- ERROR 404 ---------
+// --------- RESPONSIVE 700px ---------

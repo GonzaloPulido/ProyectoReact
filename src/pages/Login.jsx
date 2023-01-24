@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Formik, Form, Field } from 'formik';
+import {useForm} from 'react-hook-form'
+
 const Login = () => {
-    const validate = values => {
-        const errors = {};
-        if (!values.firstName) {
-          errors.firstName = 'Required';
-          alert(errors.firstName)
+    const [users, setUsers] = useState([])
+    const localStorageId = "usuariosRegistrados"
+    const {register,handleSubmit,formState:{errors}} = useForm()
+    
+    const onSubmit = (e) => {
+        const datosLogin = {
+            email: e.email,
+            contraseña: e.contraseña
         }
-        return errors;
+        setUsers(JSON.parse(window.localStorage.getItem(localStorageId)))
+        users.push(datosLogin)
+        
+        window.localStorage.setItem(localStorageId, JSON.stringify(users))
+        console.log(users)
       }
-
-
 
   return (
     <div>
@@ -19,22 +25,42 @@ const Login = () => {
     <section>
         <h1 className="titulo">Iniciar sesion</h1>
         <article className="inicio_sesion_padre">
-            <form className="inicio_sesion">
-                <label for="nombre_correo">Nombre de usuario o email
-                <Formik
-                    initialValues={{ firstName: '' }}
-                    validate={validate}
-                    onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
-                    }, 400);
-                        }}>
-                    <input type="text" id="nombre_correo" name="nombre_correo" required/>
-                    </Formik>
+            <form className="inicio_sesion" onSubmit={handleSubmit(onSubmit)}>
+                <label for="nombre_correo">Correo Electronico
+                <input type="text" 
+                id="nombre_correo" 
+                name="nombre_correo" 
+                {...register("email",{
+                    required: {
+                        value:true,
+                        message: "Es necesario rellenar el campo"
+                    },
+                    pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                        message: "Formato incorrecto"
+                    }
+                })}/> 
+                {errors.email && <span className="error">{errors.email.message}</span>}  
                 </label>
                 <label for="contraseña">Contraseña
-                    <input type="text" id="contraseña" name="contraseña" required/>
+                    <input type="password" 
+                    id="contraseña" 
+                    name="contraseña"
+                    {...register("contraseña",{
+                        required: {
+                            value:true,
+                            message: "Es necesario rellenar el campo"
+                        },
+                        minLength: {
+                            value: 8,
+                            message: "La contraseña debe tener al menos 8 caracteres"
+                        },
+                        pattern:{
+                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#$%]).{8,24}$/,
+                            message: " La contraseña debe incluir almenos una maysucula, una minuscula, un numero y un caracter especial"
+                        }
+                    })}/>
+                    {errors.contraseña && <span className="error">{errors.contraseña.message}</span>}
                 </label>
                 <label for="recuerdame" className="recordar">Recuerdame
                     <input type="checkbox"id="recuerdame" name="recuerdame" className="input_recordar"/>

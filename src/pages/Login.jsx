@@ -14,7 +14,6 @@ const Login = () => {
         }
         setUsers(JSON.parse(window.localStorage.getItem(localStorageId)))
         users.push(datosLogin)
-        
         window.localStorage.setItem(localStorageId, JSON.stringify(users))
         console.log(users)
       }

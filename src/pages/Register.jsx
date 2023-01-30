@@ -1,30 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 
 const Register = () => {
     const [users, setUsers] = useState([])
+    /* const [contraseña,setContraseña] = useState("")
+    const [repcontraseña,setRepcontraseña] = useState("") */
     const localStorageId = "usuariosRegistrados"
-    const {register,handleSubmit,formState:{errors}} = useForm()
-    const onSubmit = (e) => {
-        const datosLogin = {
-            nombre: e.nombre,
-            apellidos: e.apellidos,
-            email: e.email,
-            contraseña: e.contraseña,
-            repcontraseña: e.repcontraseña
+    const {register,handleSubmit,watch,formState:{errors}} = useForm()
 
-            
-        }
-        setUsers(JSON.parse(window.localStorage.getItem(localStorageId)))
-        users.push(datosLogin)
-        window.localStorage.setItem(localStorageId, JSON.stringify(users))
-        console.log(users)
-      
+
+    const password = useRef({});
+    password.current = watch("contraseña", "");
+
+    const onSubmit = (e) => {
+
+            const datosLogin = {
+                nombre: e.nombre,
+                apellidos: e.apellidos,
+                email: e.email,
+                contraseña: e.contraseña,
+                repcontraseña: e.repetir_contraseña
+
+            }
+
+            setUsers(JSON.parse(window.localStorage.getItem(localStorageId)))
+            users.push(datosLogin)
+            window.localStorage.setItem(localStorageId, JSON.stringify(users))
+            console.log(users)
+        
     }
-    const checkPass = (e) =>{
-        return e.target.id.contraseña.value === e.target.id.repetir_contraseña.value
-    }
+    
 
 
 
@@ -35,7 +41,7 @@ const Register = () => {
         <h1 className="titulo">Registrarse</h1>
         <article className="registro_padre">
             <form className="registro" onSubmit={handleSubmit(onSubmit)}>
-                <label for="nombre">Nombre *
+                <label htmlFor="nombre">Nombre *
                     <input type="text" 
                     id="nombre" 
                     name="nombre"
@@ -52,7 +58,7 @@ const Register = () => {
                 {errors.nombre && <span className="error">{errors.nombre.message}</span>}
                 </label>
                 
-                <label for="apellidos">Apellidos *
+                <label htmlFor="apellidos">Apellidos *
                     <input type="text" 
                     id="apellidos" 
                     name="apellidos"
@@ -69,7 +75,7 @@ const Register = () => {
                 {errors.apellidos && <span className="error">{errors.apellidos.message}</span>}
                 </label>
                 
-                <label for="correo">Correo electronico *
+                <label htmlFor="correo">Correo electronico *
                     <input type="text" 
                     id="correo" 
                     name="correo"
@@ -85,7 +91,7 @@ const Register = () => {
                     })}/>
                 {errors.email && <span className="error">{errors.email.message}</span>}  
                 </label>
-                <label for="contraseña">Contraseña *
+                <label htmlFor="contraseña">Contraseña *
                     <input type="password" 
                     id="contraseña" 
                     name="contraseña"
@@ -102,29 +108,24 @@ const Register = () => {
                             value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#$%]).{8,24}$/,
                             message: " La contraseña debe incluir almenos una maysucula, una minuscula, un numero y un caracter especial"
                         }
-                    })}/>
+                    })} />
                 {errors.contraseña && <span className="error">{errors.contraseña.message}</span>}    
                 </label>
-                <label for="repetir_contraseña">Repetir contraseña *
+                <label htmlFor="repetir_contraseña">Repetir contraseña *
                     <input type="password" 
                     id="repetir_contraseña" 
                     name="repetir_contraseña"
                     {...register("repetir_contraseña",{
-                        required: {
-                            value:true,
-                            message: "Es necesario rellenar el campo"
-                        },
-                        validate: {
-                            value: checkPass,
-                            message: "Las contraseñas no coinciden"
-                        }
+                        validate: value =>
+                          value === password.current || "Las contraseñas no coinciden",
+                        
                           
                     })}/>
                     {errors.repetir_contraseña && <span className="error">{errors.repetir_contraseña.message}</span>}
                 </label>
                 <NavLink to="/login" className="enlace_registro">¿Ya tienes cuenta?,inicia sesión</NavLink>
-                <label for="registrarse">
-                    <input type="submit" value="Registrarse" id="registrarse" className="boton_registro"/>
+                <label htmlFor="registrarse">
+                    <input onClick={handleSubmit(onSubmit)} type="submit" value="Registrarse" id="registrarse" className="boton_registro"/>
                 </label>
             </form>
         </article>

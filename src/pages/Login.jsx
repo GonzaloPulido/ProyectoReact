@@ -25,7 +25,7 @@ const Login = () => {
         <h1 className="titulo">Iniciar sesion</h1>
         <article className="inicio_sesion_padre">
             <form className="inicio_sesion" onSubmit={handleSubmit(onSubmit)}>
-                <label for="nombre_correo">Correo Electronico
+                <label htmlFor="nombre_correo">Correo Electronico
                 <input type="text" 
                 id="nombre_correo" 
                 name="nombre_correo" 
@@ -41,7 +41,7 @@ const Login = () => {
                 })}/> 
                 {errors.email && <span className="error">{errors.email.message}</span>}  
                 </label>
-                <label for="contraseña">Contraseña
+                <label htmlFor="contraseña">Contraseña
                     <input type="password" 
                     id="contraseña" 
                     name="contraseña"
@@ -61,12 +61,12 @@ const Login = () => {
                     })}/>
                     {errors.contraseña && <span className="error">{errors.contraseña.message}</span>}
                 </label>
-                <label for="recuerdame" className="recordar">Recuerdame
+                <label htmlFor="recuerdame" className="recordar">Recuerdame
                     <input type="checkbox"id="recuerdame" name="recuerdame" className="input_recordar"/>
                 </label>
                 <a className="enlaces_inicio_sesion">¿Has olvidado tu contraseña?</a><br/>
                 <NavLink to="/register" className="enlaces_inicio_sesion">¿No tienes cuenta?, registrate</NavLink>
-                <label for="acceder">
+                <label htmlFor="acceder">
                     <input type="submit"  value="Acceder" id="acceder" className="boton_inicio_sesion"/>
                 </label>
             </form>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { SyncLoader } from 'react-spinners'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Paginate from '../components/Paginate'
@@ -35,7 +36,7 @@ const Estudiantes = () => {
             <h1 className="titulo">Estudiantes</h1>
             <section className="padre_listados">   
             {
-              !characters ? <h1 className='titulo'>Cargando ...</h1> : <Paginate datos={characters}/>
+              !characters ? <SyncLoader color="#FFBF00" /> : <Paginate datos={characters}/>
             }
             </section>
         </main>

@@ -1,5 +1,5 @@
 import React, { useState,useRef } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 
 const Register = () => {
@@ -12,6 +12,7 @@ const Register = () => {
 
     const password = useRef({});
     password.current = watch("contraseña", "");
+    const navigate = useNavigate()
 
     const onSubmit = (e) => {
 
@@ -28,6 +29,8 @@ const Register = () => {
             users.push(datosLogin)
             window.localStorage.setItem(localStorageId, JSON.stringify(users))
             console.log(users)
+
+            navigate("/login")
         
     }
     

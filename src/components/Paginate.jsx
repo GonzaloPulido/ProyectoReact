@@ -52,7 +52,8 @@ const Paginate = ({datos}) => {
             <div className='titulos'>
               <h2 className='titulo_elemento'>{name}</h2>
             </div>
-            <NavLink to="/personaje" className="button">Ver más</NavLink>
+            
+            <NavLink to="/personaje" className="button" props={item}>Ver más</NavLink>
           </article>
         })
         }   

@@ -1,21 +1,32 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 
 const Login = () => {
-    const [users, setUsers] = useState([])
-    const localStorageId = "usuariosRegistrados"
+    const [loged, setLoged] = useState([])
+    const localStorageId = "logedUser"
     const {register,handleSubmit,formState:{errors}} = useForm()
-    
+    const navigate = useNavigate()
+    const datos = JSON.parse(localStorage.getItem("usuariosRegistrados"))
+    console.log(datos)
+
     const onSubmit = (e) => {
         const datosLogin = {
             email: e.email,
             contraseña: e.contraseña
         }
-        setUsers(JSON.parse(window.localStorage.getItem(localStorageId)))
-        users.push(datosLogin)
-        window.localStorage.setItem(localStorageId, JSON.stringify(users))
-        console.log(users)
+
+        datos.map( dato => {
+            if(datosLogin.email === dato.email && datosLogin.contraseña === dato.contraseña){
+                setLoged(datos)
+                loged.push(datos)
+                window.localStorage.setItem(localStorageId, JSON.stringify(loged))
+                console.log(loged)
+                navigate("/perfil")
+            }
+            
+        })
+        
       }
 
   return (

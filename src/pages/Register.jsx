@@ -11,7 +11,8 @@ const Register = () => {
 
 
     const password = useRef({});
-    password.current = watch("contraseña", "");
+    password.current = watch("contraseña", "")
+    
     const navigate = useNavigate()
 
     const onSubmit = (e) => {
@@ -109,7 +110,7 @@ const Register = () => {
                         },
                         pattern:{
                             value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#$%]).{8,24}$/,
-                            message: " La contraseña debe incluir almenos una maysucula, una minuscula, un numero y un caracter especial"
+                            message: "La contraseña debe incluir almenos una maysucula, una minuscula, un numero y un caracter especial"
                         }
                     })} />
                 {errors.contraseña && <span className="error">{errors.contraseña.message}</span>}    

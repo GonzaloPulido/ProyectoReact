@@ -3,7 +3,6 @@ import React from 'react'
 const Personaje = (props) => {
   const {image,name,dateOfBirth,gender,eyeColour,hairColour,species,house,
     wizard,ancestry,actor,wand,patronus,alive} = props
-    console.log(props)
   
   return (
     <div>

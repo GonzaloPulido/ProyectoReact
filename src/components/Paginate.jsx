@@ -11,14 +11,17 @@ const Paginate = ({datos}) => {
     
 
     const paginaAnterior = () => {
+
         const prevPage = paginaActual - 1
         const primerIndex = prevPage * itemsPorPagina
 
         if (prevPage < 0 ){
             return
         }else{
+          
             setitems([...datos].splice(primerIndex,itemsPorPagina))
             setpaginaActual(prevPage)
+
         }
         
 
@@ -53,7 +56,7 @@ const Paginate = ({datos}) => {
               <h2 className='titulo_elemento'>{name}</h2>
             </div>
             
-            <NavLink to="/personaje" className="button" props={item}>Ver más</NavLink>
+            <NavLink to="/personaje" className="button" props={id}>Ver más</NavLink>
           </article>
         })
         }   

@@ -4,8 +4,6 @@ import {useForm} from 'react-hook-form'
 
 const Register = () => {
     const [users, setUsers] = useState([])
-    /* const [contraseña,setContraseña] = useState("")
-    const [repcontraseña,setRepcontraseña] = useState("") */
     const localStorageId = "usuariosRegistrados"
     const {register,handleSubmit,watch,formState:{errors}} = useForm()
 

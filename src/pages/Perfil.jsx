@@ -1,26 +1,38 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import perfil from "../img/perfil.png"
 
 const Perfil = () => {
-  const datos = JSON.parse(localStorage.getItem("usuariosRegistrados"))
+  const datos = JSON.parse(localStorage.getItem("logedUser"))
+  const user = datos[0][0]
+  const navigate = useNavigate()
   
+  
+  const cerrarSesion = () => {
+
+    localStorage.removeItem("logedUser");
+    console.log(datos)
+    navigate("/")
+
+  }
 
   return (
     <div>
       <main>
-        <section>
+        <section className='perfilSect'>
             <h1 className="titulo">Perfil</h1>
             <article className='perfil_container'>
               <div className='perfil1'>
-                <img />
-                <NavLink id="boton_inicio">Favoritos</NavLink>
+                <img src={perfil} className="foto_perfil"/>
+                <NavLink id="boton_inicio" to="/favoritos">Favoritos</NavLink>
               </div>
               <div className='perfil2'>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p className='perfil2text'>Nombre: {user.nombre}</p>
+                <p className='perfil2text'>Apellidos: {user.apellidos}</p>
+                <p >Email: {user.email}</p>
               </div>
             </article>
+            <button id="boton_inicio" className='botonPerfil' onClick={cerrarSesion}>Cerrar sesion</button>
         </section>
       </main>
     </div>

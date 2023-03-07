@@ -79,8 +79,6 @@ export const router = createBrowserRouter([
         path: '/perfil',
         element: <Perfil />,
       },
-      
-
     ],
   },
 ])

@@ -1,42 +1,56 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
+import noimage from "../img/noimage.png"
 
 const Personaje = (props) => {
-  const {image,name,dateOfBirth,gender,eyeColour,hairColour,species,house,
-    wizard,ancestry,actor,wand,patronus,alive} = props
-  
+
+    const location= useLocation()
+    const {state} = location
+  console.log(state.item.name)
   return (
     <div>
         <main>
             <section>
-                <h1 className="titulo">Harry Potter</h1>
+                <h1 className="titulo">{state.item.name}</h1>
                 <article className="elementos_personaje">
                     <div className="div_personaje">
-                    <img src={image} className="foto" alt={name}></img>
+                    {
+                        !state.item.image ? <img src={noimage}/> : <img src={state.item.image} className="foto" alt={state.item.name}></img>
+                    }
+                    
                     </div>
                     <ul>
-                        <li className="lista1_personaje">Nombre:<p>{name}</p></li>
-                        <li className="lista1_personaje">Fecha de nacimiento:<p>{dateOfBirth}</p></li>
-                        <li className="lista1_personaje">Genero:<p>{gender}</p></li>
-                        <li className="lista1_personaje">Color de ojos:<p>{eyeColour}</p></li>
-                        <li className="lista1_personaje">Color de pelo:<p>{hairColour}</p></li>
+                        <li className="lista1_personaje">Nombre:<p>{state.item.name}</p></li>
+                        <li className="lista1_personaje">Fecha de nacimiento:<p>{state.item.dateOfBirth}</p></li>
+                        <li className="lista1_personaje">Genero:<p>{state.item.gender}</p></li>
+                        <li className="lista1_personaje">Color de ojos:<p>{state.item.eyeColour}</p></li>
+                        <li className="lista1_personaje">Color de pelo:<p>{state.item.hairColour}</p></li>
                     </ul>
                     <ul>
-                        <li className="lista1_personaje">Especie:<p>{species}</p></li>
-                        <li className="lista1_personaje">Casa:<p>{house}</p></li>
-                        <li className="lista1_personaje">Mago:<p>{wizard}</p></li>
-                        <li className="lista1_personaje">Ascendencia:<p>{ancestry}</p></li>
-                        <li className="lista1_personaje">Actor:<p>{actor}</p></li>
+                        <li className="lista1_personaje">Especie:<p>{state.item.species}</p></li>
+                        <li className="lista1_personaje">Casa:<p>{state.item.house}</p></li>
+                        <li className="lista1_personaje">Mago:
+                        {
+                            !state.item.wizard ? <p>No</p> : <p>Yes</p>
+                        }
+                        </li>
+                        <li className="lista1_personaje">Ascendencia:<p>{state.item.ancestry}</p></li>
+                        <li className="lista1_personaje">Actor:<p>{state.item.actor}</p></li>
                     </ul>
                     <ul>
                         <li className="lista1_personaje">Varita:
                             <ul>
-                                <li className="lista1_personaje">Madera:<p>{wand}</p></li>
-                                <li className="lista1_personaje">Centro:<p>{wand}</p></li>
-                                <li className="lista1_personaje">Longitud:<p>{wand}</p></li>
+                                <li className="lista1_personaje">Madera:<p>{state.item.wand.wood}</p></li>
+                                <li className="lista1_personaje">Centro:<p>{state.item.wand.core}</p></li>
+                                <li className="lista1_personaje">Longitud:<p>{state.item.wand.length}</p></li>
                             </ul>
                         </li>
-                        <li className="lista1_personaje">Patronus:<p>{patronus}</p></li>
-                        <li className="lista1_personaje">Vivo:<p>{alive}</p></li>
+                        <li className="lista1_personaje">Patronus:<p>{state.item.patronus}</p></li>
+                        <li className="lista1_personaje">Vivo:
+                        {
+                            !state.item.patronus ? <p>No</p> : <p>Yes</p>
+                        }
+                        </li>
                     </ul>
                 </article>
             </section>

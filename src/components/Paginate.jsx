@@ -2,29 +2,27 @@ import React from 'react'
 import { useState } from 'react'
 import noimage from "../img/noimage.png"
 import { NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as fasStar, faV } from '@fortawesome/free-solid-svg-icons';
 
 const Paginate = ({datos}) => {
-    
+
+    const localStorageId = "favoritos"
+    const [favoritos,setFavoritos] = useState([])
     const itemsPorPagina = 21
     const [items, setitems] = useState([...datos].splice(0,itemsPorPagina))
     const [paginaActual, setpaginaActual] = useState(0)
     
-
     const paginaAnterior = () => {
-
         const prevPage = paginaActual - 1
         const primerIndex = prevPage * itemsPorPagina
-
         if (prevPage < 0 ){
             return
         }else{
-          
             setitems([...datos].splice(primerIndex,itemsPorPagina))
             setpaginaActual(prevPage)
-
         }
-        
-
     }
 
     const paginaSiguiente = () => {
@@ -39,7 +37,24 @@ const Paginate = ({datos}) => {
             setpaginaActual(nextPage)
         }
     }
-    
+
+    const añadirFav = (personaje) => {
+      // Comprobar si está en favoritos
+        // Si está => llamo a la función eliminar%-favorito 
+            // quita la estrella y lo saca de favorito
+        // No está => llamo a la función añadir
+          // pongo la estrella y lo añado
+      console.log(favoritos)
+      if( favoritos.map((o) => o.name).indexOf(personaje.name) >= 0){
+        const posicion = favoritos.map((o) => o.name).indexOf(personaje.name)
+        delete(favoritos[posicion])
+      }else{
+        setFavoritos([...favoritos,personaje])
+      }
+      console.log(favoritos)
+      window.localStorage.setItem(localStorageId, JSON.stringify(favoritos))
+    }
+
     return (
     <>
         {!items ? '' : 
@@ -55,8 +70,16 @@ const Paginate = ({datos}) => {
             <div className='titulos'>
               <h2 className='titulo_elemento'>{name}</h2>
             </div>
+            <a className='icono_fav'>
             
-            <NavLink to="/personaje" className="button" props={id}>Ver más</NavLink>
+              {   
+                favoritos.map((o) => o.name).indexOf(item.name) >= 0
+                ? <FontAwesomeIcon icon={fasStar} onClick={()=>añadirFav(item)}/>
+                : <FontAwesomeIcon icon={farStar} onClick={()=>añadirFav(item)}/>
+              }
+            
+            </a>
+            <NavLink to="/personaje" state={{ item:item}} className="button">Ver más</NavLink>
           </article>
         })
         }   

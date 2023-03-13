@@ -1,3 +1,5 @@
+/* import buscar from '../components/Paginate'
+import buscarPersonaje from '../components/Paginate' */
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -33,6 +35,7 @@ const Personajes = () => {
     <div>
         <main>
             <h1 className="titulo">Todos los personajes</h1>
+            {/* <input value={buscar} onChange={buscarPersonaje} type="text" placeholder='Buscar personaje'/> */}
             <section className="padre_listados">   
             {
               !characters ? <h1 className='titulo'>Cargando ...</h1> : <Paginate datos={characters}/>

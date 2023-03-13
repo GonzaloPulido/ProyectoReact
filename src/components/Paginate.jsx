@@ -1,15 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
 import noimage from "../img/noimage.png"
+import fav from "../img/fav.svg"
+import nofav from "../img/nofav.svg"
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-import { faStar as fasStar, faV } from '@fortawesome/free-solid-svg-icons';
+/* import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as fasStar, faV } from '@fortawesome/free-solid-svg-icons'; */
 
 const Paginate = ({datos}) => {
-
+    /* const [buscar, setBuscar] = useState("") */
     const localStorageId = "favoritos"
-    const [favoritos,setFavoritos] = useState([])
+    const favoritos = []
     const itemsPorPagina = 21
     const [items, setitems] = useState([...datos].splice(0,itemsPorPagina))
     const [paginaActual, setpaginaActual] = useState(0)
@@ -38,18 +40,31 @@ const Paginate = ({datos}) => {
         }
     }
 
-    const añadirFav = (personaje) => {
-      // Comprobar si está en favoritos
-        // Si está => llamo a la función eliminar%-favorito 
+    /* const buscarPersonaje = (e) => {
+      setBuscar(e.target.value)
+
+    } */
+
+    /* const resultado = ! buscar 
+    ? items 
+    : items.filter((dato) => {dato.name.toLowerCase().includes(buscar.toLocaleLowerCase())})  */
+
+    // Para cambiar la estrella useEffect y useState
+    
+    const añadirFav = (e,personaje) => {
+      // Comprobar si está en favoritos *
+        // Si está => llamo a la función eliminar%-favorito *
             // quita la estrella y lo saca de favorito
-        // No está => llamo a la función añadir
+        // No está => llamo a la función añadir*
           // pongo la estrella y lo añado
-      console.log(favoritos)
+        
       if( favoritos.map((o) => o.name).indexOf(personaje.name) >= 0){
+        e.target.src = nofav
         const posicion = favoritos.map((o) => o.name).indexOf(personaje.name)
-        delete(favoritos[posicion])
+        favoritos.splice(posicion,1)
       }else{
-        setFavoritos([...favoritos,personaje])
+        e.target.src = fav
+        favoritos.push(personaje)
       }
       console.log(favoritos)
       window.localStorage.setItem(localStorageId, JSON.stringify(favoritos))
@@ -70,13 +85,15 @@ const Paginate = ({datos}) => {
             <div className='titulos'>
               <h2 className='titulo_elemento'>{name}</h2>
             </div>
-            <a className='icono_fav'>
+            <a className='icono_fav' onClick={(e)=>añadirFav(e,item)}>
+              <img src={nofav} width="30 px"/>
             
-              {   
+            {/*   <FontAwesomeIcon icon={farStar} onClick={(e)=>añadirFav(e,item)}/> */}
+              {/* {   
                 favoritos.map((o) => o.name).indexOf(item.name) >= 0
                 ? <FontAwesomeIcon icon={fasStar} onClick={()=>añadirFav(item)}/>
                 : <FontAwesomeIcon icon={farStar} onClick={()=>añadirFav(item)}/>
-              }
+              } */}
             
             </a>
             <NavLink to="/personaje" state={{ item:item}} className="button">Ver más</NavLink>

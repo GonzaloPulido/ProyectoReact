@@ -1,42 +1,15 @@
 import React from 'react'
-import { SyncLoader } from 'react-spinners'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import Paginate from '../components/Paginate'
+import Galeria from '../components/Galeria'
+
 
 const Estudiantes = () => {
-
-  const url = 'https://hp-api.onrender.com/api/characters/students'
-
-  const [characters , setCharacters] = useState()
-
-    
-  
-  useEffect(()=>{
-    const llamarApi = async () => {
-      const respuesta = await fetch(url)
-      const charData = await respuesta.json()
-      if (charData !="undefined"){
-        setCharacters(charData)
-      }
-  }
-  llamarApi()
-},[])
-
-  /* --------- Paginate --------- */
-  
-  
-
   return (
-
-    // Controlar la respuesta  UseCallback, y usar operador ternario para controlar todo el HTML if ... pagina / Cargando...
-    
     <div>
         <main>
             <h1 className="titulo">Estudiantes</h1>
             <section className="padre_listados">   
             {
-              !characters ? <SyncLoader color="#FFBF00" /> : <Paginate datos={characters}/>
+              <Galeria url='https://hp-api.onrender.com/api/characters/students'/>
             }
             </section>
         </main>

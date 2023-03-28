@@ -15,6 +15,7 @@ import Contactanos from '../pages/Contactanos'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 import Perfil from '../pages/Perfil'
+import Favoritos from '../pages/Favoritos'
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,11 @@ export const router = createBrowserRouter([
         path: '/perfil',
         element: <Perfil />,
       },
+      {
+        path: '/favoritos',
+        element: <Favoritos />,
+      },
+
     ],
   },
 ])

@@ -8,11 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const Paginate = ({datos}) => {
-
+  console.log(datos)
     const [personajes,setPersonajes] = useState(datos)
     personajes.map(personaje => {
       personaje.favorito = nofav
     })
+    console.log(personajes)
 
     /* const [buscar, setBuscar] = useState("") */
     
@@ -78,7 +79,7 @@ const Paginate = ({datos}) => {
       window.localStorage.setItem(localStorageId, JSON.stringify(favoritos))
     }
 
-    console.log("render")
+    
     return (
     <>
         {!items ? '' : 

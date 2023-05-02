@@ -6,29 +6,48 @@ import noimage from '../img/noimage.png'
 import fav from '../img/fav.svg'
 import nofav from '../img/nofav.svg'
 import BotonTop from './BotonTop'
-import { faV } from '@fortawesome/free-solid-svg-icons'
+
 
 const Galeria = ({ url }) => {
-  // Elegir entre lazy load o paginate (que no rendericen la pagina¡¡¡¡¡)
+  
   const [characters, setCharacters] = useState([])
   const [showLoading, setShowLoading] = useState(false)
   const [visibleCount, setVisibleCount] = useState(21)
   const [loading, setLoading] = useState(false)
-  const [favorites, setFavorites] = useState([])
+  const favorites = localStorage.getItem("favoritos") ? JSON.parse(localStorage.getItem("favoritos")) : []
+  console.log(JSON.parse(localStorage.getItem("favoritos")))
 
-  const addToFavorites = (personaje) => {
-    const updatedFavorites = [...favorites, {...personaje, favorito: fav}]
-    setFavorites(updatedFavorites)
+  const eleccionFuncion = (e,personaje) => {
+    if(personaje.favBool){
+      removeFromFavorites(e, personaje)
+    }else{
+      addToFavorites(e,personaje)
+    }
+  }
+
+  const addToFavorites = (e,personaje) => {
+    personaje.favBool = true
+    e.target.src = fav
+    favorites.push(personaje)
+    console.log("Add")
     console.log(favorites)
+    actualizarFavoritos(favorites)
   };
   
   
-  const removeFromFavorites = (personaje) => {
-    personaje.favorito = nofav;
-    const updatedFavorites = favorites.filter((favorite) => favorite.id !== personaje.id); // crea una nueva copia de la lista sin el personaje eliminado
-    setFavorites(updatedFavorites); // actualiza la lista de favoritos
+  const removeFromFavorites = (e,personaje) => {
+    personaje.favBool = false
+    e.target.src = nofav
+    const posicion = favorites.map((object) => {object.id}).indexOf(personaje.id)
+    favorites.splice(posicion,1)
+    console.log("Remove")
     console.log(favorites)
+    actualizarFavoritos(favorites)
   };
+
+  const actualizarFavoritos = (favorites) => {
+    localStorage.setItem("favoritos",JSON.stringify(favorites))
+  }
   
 
   useEffect(() => {
@@ -65,11 +84,22 @@ const Galeria = ({ url }) => {
   return (
     <>
       {characters.slice(0, visibleCount).map((item) => {
-        item.favorito = favorites.find(favorite => favorite.id === item.id) ? fav : nofav
-        let {id,name,image,favorito} = item
-        if(image === ""){
-          image = noimage
+      item.favorito = nofav
+      item.favBool = false
+      let favLocal = JSON.parse(localStorage.getItem("favoritos"))
+      if(favLocal && favLocal.length > 0) {
+        const favorite = favLocal.find(favorite => favorite.id === item.id)
+        if(favorite) {
+          item.favorito = fav
+          item.favBool = true
         }
+      }
+      
+
+      let {id,name,image,favorito} = item
+      if(image === ""){
+        image = noimage
+      }
         return (
           <article className='elemento' key={id}>
             <div className='div_imagen'>
@@ -79,8 +109,8 @@ const Galeria = ({ url }) => {
               <h2 className='titulo_elemento'>{name}</h2>
             </div>
             <div className="icono_fav"
-              onClick={favorites.find(favorite => favorite.id === item.id) ? () => removeFromFavorites(item) : () => addToFavorites(item)}>
-              <img src={favorito} width="30 px" className='iconoFav'/>
+              >
+              <img src={favorito} width="30 px" className='iconoFav' onClick={(e) => eleccionFuncion(e,item)}/>
             </div>
             <NavLink to="/personaje" state={{ item:item}} className="button">Ver más</NavLink>
           </article>

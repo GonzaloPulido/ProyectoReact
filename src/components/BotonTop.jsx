@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import up from "../img/up.svg"
 
 function ScrollButton() {
   const handleClick = () => {
@@ -11,8 +12,7 @@ function ScrollButton() {
 
   return (
     <a onClick={handleClick} className='button_top'>
-      <FontAwesomeIcon icon="fa-regular fa-arrow-up-to-line"/>
-      UP
+      <img src={up} width="20px"/>
     </a>
   );
 }

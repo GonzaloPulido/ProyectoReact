@@ -342,6 +342,37 @@ label
     font-size: 1.3rem
     color: darkblue
 
+.registro-exitoso 
+    border: black 3px solid
+    border-radius: 10px
+    position: absolute
+    width: 18%
+    height: 10%
+    background-color: #f0c775
+    opacity: 0
+    animation-name: registro-exitoso
+    animation-duration: 3s
+    animation-fill-mode: forwards
+    padding: 5px
+
+        
+
+.registro-exitoso p 
+    color: black
+    text-align: center
+    font-size: 2rem
+        
+
+@keyframes registro-exitoso 
+    0% 
+        opacity: 0
+    
+    50% 
+        opacity: 1
+    
+    100% 
+        opacity: 0
+
 // --------- REGISTRO ---------
 // --------- LOGIN ---------
 .inicio_sesion_padre
@@ -420,6 +451,8 @@ label
 
 // --------- PERFIL ---------
 // --------- CONTACTANOS---------
+.form_contactanos
+    padding: 2px
 .contactos_padre
     font-family: 'Benne'
     font-size: 1.8rem

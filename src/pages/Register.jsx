@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form'
 
 const Register = () => {
     const [users, setUsers] = useState([])
+    const [isRegistered, setIsRegistered] = useState(false)
     const localStorageId = "usuariosRegistrados"
     const {register,handleSubmit,watch,formState:{errors}} = useForm()
 
@@ -18,6 +19,7 @@ const Register = () => {
             const datosLogin = {
                 nombre: e.nombre,
                 apellidos: e.apellidos,
+                telefono: e.telefono,
                 email: e.email,
                 contraseña: e.contraseña,
                 repcontraseña: e.repetir_contraseña
@@ -27,20 +29,25 @@ const Register = () => {
             setUsers(JSON.parse(window.localStorage.getItem(localStorageId)))
             users.push(datosLogin)
             window.localStorage.setItem(localStorageId, JSON.stringify(users))
+            setIsRegistered(true)
             console.log(users)
 
-            navigate("/login")
+            setTimeout(() => {
+                navigate("/login")
+              }, 4000)
         
-    }
+        }
     
-
-
-
   return (
     <div>
       <main>
     <section>
         <h1 className="titulo">Registrarse</h1>
+        {isRegistered && (
+        <div className="registro-exitoso">
+            <p>Usuario registrado correctamente</p>
+        </div>
+        )}
         <article className="registro_padre">
             <form className="registro" onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="nombre">Nombre *
@@ -76,9 +83,25 @@ const Register = () => {
                     })}/>
                 {errors.apellidos && <span className="error">{errors.apellidos.message}</span>}
                 </label>
+                <label htmlFor="telefono">Telefono *
+                    <input type="number" 
+                    id="telefono" 
+                    name="telefono"
+                    {...register("telefono",{
+                        required: {
+                            value:true,
+                            message: "Es necesario rellenar el campo"
+                        },
+                        pattern: {
+                            value: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/,
+                            message: "Formato incorrecto"
+                        }
+                    })}/>
+                {errors.telefono && <span className="error">{errors.telefono.message}</span>}
+                </label>
                 
                 <label htmlFor="correo">Correo electronico *
-                    <input type="text" 
+                    <input type="email" 
                     id="correo" 
                     name="correo"
                     {...register("email",{

@@ -6,13 +6,23 @@ import nofav from '../img/nofav.svg';
 import BotonTop from './BotonTop';
 
 const Galeria = ({ url }) => {
-  const [characters, setCharacters] = useState([]);
-  const [showLoading, setShowLoading] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(21);
-  const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const favorites = localStorage.getItem('favoritos') ? JSON.parse(localStorage.getItem('favoritos')) : [];
+  const [characters, setCharacters] = useState([])
+  const [showLoading, setShowLoading] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(21)
+  const [loading, setLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [searchResults, setSearchResults] = useState([])
+  const favorites = localStorage.getItem('favoritos') ? JSON.parse(localStorage.getItem('favoritos')) : []
+  const [houseFilter, setHouseFilter] = useState('')
+  const [ancestryFilter, setAncestryFilter] = useState('')
+
+  const handleHouseFilterChange = (event) => {
+    setHouseFilter(event.target.value);
+  }
+  
+  const handleAncestryFilterChange = (event) => {
+    setAncestryFilter(event.target.value);
+  }
 
   const eleccionFuncion = (e, personaje) => {
     if (personaje.favBool) {
@@ -54,6 +64,8 @@ const Galeria = ({ url }) => {
     llamarApi();
   }, []);
 
+  
+
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
@@ -83,13 +95,42 @@ const Galeria = ({ url }) => {
     setSearchResults(results);
   }, [searchTerm, characters]);
 
-  const charactersToDisplay = searchTerm ? searchResults : characters;
+  const charactersToDisplay = searchTerm ? searchResults.filter((char) => {
+    return (char.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
+            (char.house.toLowerCase().includes(houseFilter.toLowerCase()) || houseFilter === '') &&
+            (char.ancestry.toLowerCase().includes(ancestryFilter.toLowerCase()) || ancestryFilter === ''))
+  }) : characters.filter((char) => {
+    return (char.house.toLowerCase().includes(houseFilter.toLowerCase()) || houseFilter === '') &&
+           (char.ancestry.toLowerCase().includes(ancestryFilter.toLowerCase()) || ancestryFilter === '')
+  })
+
+  const shouldShowTopButton = charactersToDisplay.length > 21
 
   return (
     <>
-      <div className='search'>
-        <input type='text' placeholder='Buscar personaje...' value={searchTerm} onChange={handleChange} />
-      </div>
+    <div className='contenedor_busqueda'>
+        <div className='search'>
+          <input type='text' placeholder='Buscar personaje...' value={searchTerm} onChange={handleChange} />
+        </div>
+        <div className='filters'>
+          <label htmlFor='houseFilter'>Casa:</label>
+          <select id='houseFilter' value={houseFilter} onChange={handleHouseFilterChange}>
+            <option value=''>Todas</option>
+            <option value='Gryffindor'>Gryffindor</option>
+            <option value='Hufflepuff'>Hufflepuff</option>
+            <option value='Ravenclaw'>Ravenclaw</option>
+            <option value='Slytherin'>Slytherin</option>
+          </select>
+          <label htmlFor='ancestryFilter'>Ancestro:</label>
+          <select id='ancestryFilter' value={ancestryFilter} onChange={handleAncestryFilterChange}>
+            <option value=''>Todos</option>
+            <option value='pure-blood'>Nacido de magos</option>
+            <option value='half-blood'>Mestizo</option>
+            <option value='muggleborn'>Nacido de muggles</option>
+          </select>
+        </div>
+      </div>  
+      <div className='cards'>
       {charactersToDisplay.slice(0, visibleCount).map((item) => {
         item.favorito = nofav;
         item.favBool = false;
@@ -123,8 +164,10 @@ const Galeria = ({ url }) => {
           </article>
         )
       })}
+      </div>  
       {showLoading && <h1 className='titulo'>Cargando...</h1>}
-      <BotonTop></BotonTop>
+      {shouldShowTopButton && <BotonTop />}
+      
     </>
   )
 }

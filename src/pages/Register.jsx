@@ -6,7 +6,7 @@ const Register = () => {
     const [users, setUsers] = useState([])
     const [isRegistered, setIsRegistered] = useState(false)
     const localStorageId = "usuariosRegistrados"
-    const {register,handleSubmit,watch,formState:{errors}} = useForm()
+    const {register,handleSubmit,watch,formState:{errors}} = useForm({mode : "onChange"})
 
 
     const password = useRef({});

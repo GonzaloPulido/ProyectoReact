@@ -5,7 +5,7 @@ import {useForm} from 'react-hook-form'
 const Login = () => {
     const [loged, setLoged] = useState([])
     const localStorageId = "logedUser"
-    const {register,handleSubmit,formState:{errors}} = useForm()
+    const {register,handleSubmit,formState:{errors}} = useForm({mode : "onChange"})
     const navigate = useNavigate()
     const datos = JSON.parse(localStorage.getItem("usuariosRegistrados"))
     console.log(datos)

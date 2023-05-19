@@ -7,7 +7,7 @@ const Contactanos = () => {
     const navigate = useNavigate()
     const [mensaje, setMensaje] = useState([])
     const localStorageId = "mensajeContactanos"
-    const {register,handleSubmit,watch,formState:{errors}} = useForm()
+    const {register,handleSubmit,watch,formState:{errors}} = useForm({mode : "onChange"})
 
     const onSubmit = (e) => {
 

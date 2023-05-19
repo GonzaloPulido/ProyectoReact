@@ -15,6 +15,7 @@ const Galeria = ({ url }) => {
   const favorites = localStorage.getItem('favoritos') ? JSON.parse(localStorage.getItem('favoritos')) : []
   const [houseFilter, setHouseFilter] = useState('')
   const [ancestryFilter, setAncestryFilter] = useState('')
+  const [resetFilters, setResetFilters] = useState(false);
 
   const handleHouseFilterChange = (event) => {
     setHouseFilter(event.target.value);
@@ -104,6 +105,13 @@ const Galeria = ({ url }) => {
            (char.ancestry.toLowerCase().includes(ancestryFilter.toLowerCase()) || ancestryFilter === '')
   })
 
+  const handleResetFilters = () => {
+    setHouseFilter('');
+    setAncestryFilter('');
+    setSearchTerm('');
+    setResetFilters(true);
+  };
+
   const shouldShowTopButton = charactersToDisplay.length > 21
 
   return (
@@ -129,6 +137,7 @@ const Galeria = ({ url }) => {
             <option value='muggleborn'>Nacido de muggles</option>
           </select>
         </div>
+        <button onClick={handleResetFilters}>Restablecer filtros</button>
       </div>  
       <div className='cards'>
       {charactersToDisplay.slice(0, visibleCount).map((item) => {

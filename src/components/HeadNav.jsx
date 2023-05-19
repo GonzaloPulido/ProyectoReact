@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import hogwarts from "../img/hogwarts.png"
+import {useUserContext} from "../context/UserContext"
 
 const HeadNav = () => {
+    //const {user, setUser} = useUserContext()
   return (
     <div>
         <header>

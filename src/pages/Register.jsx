@@ -23,14 +23,12 @@ const Register = () => {
                 email: e.email,
                 contraseña: e.contraseña,
                 repcontraseña: e.repetir_contraseña
-
             }
 
             setUsers(JSON.parse(window.localStorage.getItem(localStorageId)))
             users.push(datosLogin)
             window.localStorage.setItem(localStorageId, JSON.stringify(users))
             setIsRegistered(true)
-            console.log(users)
 
             setTimeout(() => {
                 navigate("/login")

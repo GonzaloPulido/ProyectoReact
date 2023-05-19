@@ -15,7 +15,7 @@ const Galeria = ({ url }) => {
   const favorites = localStorage.getItem('favoritos') ? JSON.parse(localStorage.getItem('favoritos')) : []
   const [houseFilter, setHouseFilter] = useState('')
   const [ancestryFilter, setAncestryFilter] = useState('')
-  const [resetFilters, setResetFilters] = useState(false);
+  const [resetFilters, setResetFilters] = useState(false)
 
   const handleHouseFilterChange = (event) => {
     setHouseFilter(event.target.value);

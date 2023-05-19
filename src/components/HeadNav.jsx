@@ -1,10 +1,21 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate} from 'react-router-dom'
 import hogwarts from "../img/hogwarts.png"
-import {useUserContext} from "../context/UserContext"
+import { useUserContext } from '../context/UserContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import registerIcon from '../img/registrarse.svg';
 
 const HeadNav = () => {
-    //const {user, setUser} = useUserContext()
+    const {user, setUser} = useUserContext()
+    const navigate = useNavigate()
+
+    const cerrarSesion = () => {
+
+        localStorage.removeItem("logedUser");
+        setUser(false)
+        navigate("/")
+    
+      }
   return (
     <div>
         <header>
@@ -37,8 +48,18 @@ const HeadNav = () => {
                     </nav>
                 </div>
             </li>
-            <li className="iconos"><i className="fas fa-search"></i></li>
-            <li className="iconos"><i className="fas fa-user-circle"></i></li>
+            {user && (
+                <li className="iconos"><NavLink to="/perfil"><i className="fas fa-user-circle"></i></NavLink></li>
+            )}
+            {user || (
+               <li className="iconos"><NavLink to="/login"><i className="fa-solid fa-right-to-bracket"></i></NavLink></li>
+            )}
+            {user ? (
+                <li className="iconos"><button onClick={cerrarSesion}>Hola</button></li>
+            ) : (
+                <li className="iconos"><img src={registerIcon} className='iconos_header'/></li>
+            )}
+           
         </ul>
     </header>
     </div>

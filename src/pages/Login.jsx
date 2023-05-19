@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
+import { UserContext, useUserContext } from '../context/UserContext'
 
 const Login = () => {
+    const {user, setUser} = useUserContext()
     const [loged, setLoged] = useState([])
     const localStorageId = "logedUser"
     const {register,handleSubmit,formState:{errors}} = useForm({mode : "onChange"})
@@ -22,6 +24,7 @@ const Login = () => {
                 loged.push(datos)
                 window.localStorage.setItem(localStorageId, JSON.stringify(loged))
                 console.log(loged)
+                setUser(true)
                 navigate("/perfil")
             }
             

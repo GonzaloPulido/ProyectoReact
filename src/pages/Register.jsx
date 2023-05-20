@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 
 const Register = () => {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState(localStorage.getItem('usuariosRegistrados') ? JSON.parse(localStorage.getItem('usuariosRegistrados')) : [])
     const [isRegistered, setIsRegistered] = useState(false)
     const localStorageId = "usuariosRegistrados"
     const {register,handleSubmit,watch,formState:{errors}} = useForm({mode : "onChange"})

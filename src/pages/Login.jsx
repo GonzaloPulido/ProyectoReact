@@ -10,7 +10,7 @@ const Login = () => {
     const {register,handleSubmit,formState:{errors}} = useForm({mode : "onChange"})
     const navigate = useNavigate()
     const datos = JSON.parse(localStorage.getItem("usuariosRegistrados"))
-    console.log(datos)
+    
 
     const onSubmit = (e) => {
         const datosLogin = {
@@ -19,11 +19,11 @@ const Login = () => {
         }
 
         datos.map( dato => {
+            
             if(datosLogin.email === dato.email && datosLogin.contraseña === dato.contraseña){
-                setLoged(datos)
-                loged.push(datos)
+                setLoged(dato)
+                loged.push(dato)
                 window.localStorage.setItem(localStorageId, JSON.stringify(loged))
-                console.log(loged)
                 setUser(true)
                 navigate("/perfil")
             }

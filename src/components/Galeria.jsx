@@ -1,21 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import noimage from '../img/noimage.png';
 import fav from '../img/fav.svg';
 import nofav from '../img/nofav.svg';
 import BotonTop from './BotonTop';
+import UserContext, { useUserContext } from "../context/UserContext"
 
 const Galeria = ({ url }) => {
+  const { user, setUser } = useUserContext()
+  const navigate = useNavigate()
+
   const [characters, setCharacters] = useState([])
   const [showLoading, setShowLoading] = useState(false)
   const [visibleCount, setVisibleCount] = useState(21)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState([])
-  const favorites = localStorage.getItem('favoritos') ? JSON.parse(localStorage.getItem('favoritos')) : []
+  //const favorites = localStorage.getItem('favoritos') ? JSON.parse(localStorage.getItem('favoritos')) : []
   const [houseFilter, setHouseFilter] = useState('')
   const [ancestryFilter, setAncestryFilter] = useState('')
   const [resetFilters, setResetFilters] = useState(false)
+
+
+  let favoritesKey = ''
+  if(user){
+    const logedUser = JSON.parse(localStorage.getItem('logedUser'))
+    const email = logedUser[0].email
+    favoritesKey = `favoritos_${email}`
+  }
+  
+  
+  
+  
+  const userFavorites = localStorage.getItem(favoritesKey) ? JSON.parse(localStorage.getItem(favoritesKey)) : []
+  
 
   const handleHouseFilterChange = (event) => {
     setHouseFilter(event.target.value);
@@ -26,32 +44,37 @@ const Galeria = ({ url }) => {
   }
 
   const eleccionFuncion = (e, personaje) => {
-    if (personaje.favBool) {
-      removeFromFavorites(e, personaje);
-    } else {
-      addToFavorites(e, personaje);
+    if(!user){
+      navigate("/register")
+    }else{
+      if (personaje.favBool) {
+        removeFromFavorites(e, personaje);
+      } else {
+        addToFavorites(e, personaje);
+      }
+    };
     }
-  };
+    
 
   const addToFavorites = (e, personaje) => {
     personaje.favBool = true;
     e.target.src = fav;
-    favorites.push(personaje);
-    actualizarFavoritos(favorites);
+    userFavorites.push(personaje);
+    actualizarFavoritos();
   };
 
   const removeFromFavorites = (e, personaje) => {
     personaje.favBool = false;
     e.target.src = nofav;
-    const posicion = favorites.map((object) => {
-      object.id;
-    }).indexOf(personaje.id);
-    favorites.splice(posicion, 1);
-    actualizarFavoritos(favorites);
+    const index = userFavorites.findIndex((fav) => fav.id === personaje.id);
+    if (index !== -1) {
+      userFavorites.splice(index, 1);
+      actualizarFavoritos();
+    }
   };
 
-  const actualizarFavoritos = (favorites) => {
-    localStorage.setItem('favoritos', JSON.stringify(favorites));
+  const actualizarFavoritos = () => {
+    localStorage.setItem(favoritesKey, JSON.stringify(userFavorites));
   };
 
   useEffect(() => {
@@ -141,22 +164,16 @@ const Galeria = ({ url }) => {
       </div>  
       <div className='cards'>
       {charactersToDisplay.slice(0, visibleCount).map((item) => {
-        item.favorito = nofav;
-        item.favBool = false;
-        let favLocal = JSON.parse(localStorage.getItem('favoritos'));
-        if (favLocal && favLocal.length > 0) {
-          const favorite = favLocal.find((favorite) => favorite.id === item.id);
-          if (favorite) {
-            item.favorito = fav;
-            item.favBool = true;
+          item.favBool = userFavorites.some((fav) => fav.id === item.id);
+          if(item.favBool){
+            item.favorito = fav
+          }else{
+            item.favorito = nofav
           }
-        }
-      
-
-      let {id,name,image,favorito} = item
-      if(image === ""){
-        image = noimage
-      }
+          let { id, name, image, favorito } = item;
+          if (image === "") {
+            image = noimage;
+          }
         return (
           <article className='elemento' key={id}>
             <div className='div_imagen'>

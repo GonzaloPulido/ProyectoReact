@@ -52,12 +52,12 @@ const HeadNav = () => {
                 <li className="iconos"><NavLink to="/perfil"><i className="fas fa-user-circle"></i></NavLink></li>
             )}
             {user || (
-               <li className="iconos"><NavLink to="/login"><i className="fa-solid fa-right-to-bracket"></i></NavLink></li>
+               <li className="iconos"><NavLink to="/login">Login{/* <i className="fa-solid fa-right-to-bracket"></i> */}</NavLink></li>
             )}
             {user ? (
                 <li className="iconos"><button onClick={cerrarSesion}>Hola</button></li>
             ) : (
-                <li className="iconos"><img src={registerIcon} className='iconos_header'/></li>
+                <li className="iconos"><NavLink to="/register">Register{/* <img src={registerIcon} className='iconos_header'/> */}</NavLink></li>
             )}
            
         </ul>

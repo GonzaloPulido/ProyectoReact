@@ -7,14 +7,13 @@ import { set } from 'react-hook-form'
 const Perfil = () => {
   const {user, setUser} = useUserContext()
   const datos = JSON.parse(localStorage.getItem("logedUser"))
-  const usuario = datos[0][0]
+  const usuario = datos[0]
   const navigate = useNavigate()
   
   
   const cerrarSesion = () => {
 
     localStorage.removeItem("logedUser");
-    console.log(datos)
     setUser(false)
     navigate("/")
 

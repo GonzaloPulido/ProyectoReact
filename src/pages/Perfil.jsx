@@ -41,7 +41,7 @@ const Perfil = () => {
                 <p >Email: {usuario.email}</p>
               </div>
             </article>
-            <button id="boton_inicio" className='botonPerfil' onClick={cerrarSesion}>Cerrar sesion</button>
+            <button className='botonPerfil' onClick={cerrarSesion}>Cerrar sesion</button>
         </section>
       </main>
     </div>

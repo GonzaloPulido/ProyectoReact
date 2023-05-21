@@ -13,11 +13,6 @@ const Favoritos = () => {
   const [showLoading, setShowLoading] = useState(false)
   const [visibleCount, setVisibleCount] = useState(21)
   const [loading, setLoading] = useState(false)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [searchResults, setSearchResults] = useState([])
-  const [houseFilter, setHouseFilter] = useState('')
-  const [ancestryFilter, setAncestryFilter] = useState('')
-  const [resetFilters, setResetFilters] = useState(false)
 
   useEffect(() => {
     if (!user) {
@@ -28,16 +23,7 @@ const Favoritos = () => {
   const logedUser = JSON.parse(localStorage.getItem('logedUser'))
   const email = logedUser[0].email
   const favoritesKey = `favoritos_${email}`
-  
   const listaFavoritos = JSON.parse(localStorage.getItem(favoritesKey)) ? JSON.parse(localStorage.getItem(favoritesKey)) : []
-
-  const handleHouseFilterChange = (event) => {
-    setHouseFilter(event.target.value);
-  }
-  
-  const handleAncestryFilterChange = (event) => {
-    setAncestryFilter(event.target.value);
-  }
 
   const removeFromFavorites = (e, personaje) => {
     personaje.favBool = false;
@@ -73,63 +59,14 @@ const Favoritos = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [visibleCount]);
 
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  }
-
-  useEffect(() => {
-    const results = listaFavoritos.filter((char) => char.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    setSearchResults(results);
-  }, [searchTerm, listaFavoritos]);
-
-  const charactersToDisplay = searchTerm ? searchResults.filter((char) => {
-    return (char.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
-            (char.house.toLowerCase().includes(houseFilter.toLowerCase()) || houseFilter === '') &&
-            (char.ancestry.toLowerCase().includes(ancestryFilter.toLowerCase()) || ancestryFilter === ''))
-  }) : listaFavoritos.filter((char) => {
-    return (char.house.toLowerCase().includes(houseFilter.toLowerCase()) || houseFilter === '') &&
-           (char.ancestry.toLowerCase().includes(ancestryFilter.toLowerCase()) || ancestryFilter === '')
-  })
-
-  const handleResetFilters = () => {
-    setHouseFilter('');
-    setAncestryFilter('');
-    setSearchTerm('');
-    setResetFilters(true);
-  };
-
-  const shouldShowTopButton = charactersToDisplay.length > 21
+  const shouldShowTopButton = listaFavoritos.length > 21
 
   return (
     <>
       <main>
       <h1 className="titulo">Favoritos</h1>
         <section className='padre_listados'>
-        <div className='contenedor_busqueda'>
-          <div className='search'>
-            <input type='text' placeholder='Buscar personaje...' value={searchTerm} onChange={handleChange} />
-          </div>
-          <div className='filters'>
-            <label htmlFor='houseFilter'>Casa:</label>
-            <select id='houseFilter' value={houseFilter} onChange={handleHouseFilterChange}>
-              <option value=''>Todas</option>
-              <option value='Gryffindor'>Gryffindor</option>
-              <option value='Hufflepuff'>Hufflepuff</option>
-              <option value='Ravenclaw'>Ravenclaw</option>
-              <option value='Slytherin'>Slytherin</option>
-            </select>
-            <label htmlFor='ancestryFilter'>Ancestro:</label>
-            <select id='ancestryFilter' value={ancestryFilter} onChange={handleAncestryFilterChange}>
-              <option value=''>Todos</option>
-              <option value='pure-blood'>Nacido de magos</option>
-              <option value='half-blood'>Mestizo</option>
-              <option value='muggleborn'>Nacido de muggles</option>
-            </select>
-          </div>
-          <button onClick={handleResetFilters}>Restablecer filtros</button>
-        </div>  
-        <div className='cards'>
-        {charactersToDisplay.slice(0, visibleCount).map((item) => {
+        {listaFavoritos.slice(0, visibleCount).map((item) => {
           item.favBool = listaFavoritos.some((fav) => fav.id === item.id);
           if(item.favBool){
             item.favorito = fav
@@ -156,16 +93,9 @@ const Favoritos = () => {
           </article>
         )
       })} 
-      </div>
       {showLoading && <h1 className='titulo'>Cargando...</h1>}
       {shouldShowTopButton && <BotonTop />}
         </section>
-      
-
-
-
-
-
       </main>
     </>
   )

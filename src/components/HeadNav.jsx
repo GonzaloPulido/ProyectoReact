@@ -3,7 +3,7 @@ import { NavLink, useNavigate} from 'react-router-dom'
 import hogwarts from "../img/hogwarts.png"
 import { useUserContext } from '../context/UserContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import registerIcon from '../img/registrarse.svg';
+import registerIcon from '../img/registrarse.svg'
 
 const HeadNav = () => {
     const {user, setUser} = useUserContext()
@@ -55,7 +55,7 @@ const HeadNav = () => {
                <li className="iconos"><NavLink to="/login">Login{/* <i className="fa-solid fa-right-to-bracket"></i> */}</NavLink></li>
             )}
             {user ? (
-                <li className="iconos"><button onClick={cerrarSesion}>Hola</button></li>
+                <li className="iconos"><button onClick={cerrarSesion}>Logout</button></li>
             ) : (
                 <li className="iconos"><NavLink to="/register">Register{/* <img src={registerIcon} className='iconos_header'/> */}</NavLink></li>
             )}

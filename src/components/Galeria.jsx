@@ -7,7 +7,7 @@ import BotonTop from './BotonTop';
 import UserContext, { useUserContext } from "../context/UserContext"
 
 const Galeria = ({ url }) => {
-  const { user, setUser } = useUserContext()
+  const {user, setUser} = useUserContext()
   const navigate = useNavigate()
 
   const [characters, setCharacters] = useState([])
@@ -113,7 +113,6 @@ const Galeria = ({ url }) => {
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
-
   useEffect(() => {
     const results = characters.filter((char) => char.name.toLowerCase().includes(searchTerm.toLowerCase()));
     setSearchResults(results);

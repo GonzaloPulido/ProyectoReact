@@ -5,6 +5,7 @@ import { UserContext, useUserContext } from '../context/UserContext'
 
 const Login = () => {
     const {user, setUser} = useUserContext()
+    const [noLoged, setNoLoged] = useState(false)
     const [loged, setLoged] = useState([])
     const localStorageId = "logedUser"
     const {register,handleSubmit,formState:{errors}} = useForm({mode : "onChange"})
@@ -13,11 +14,12 @@ const Login = () => {
     
 
     const onSubmit = (e) => {
+        
         const datosLogin = {
             email: e.email,
             contraseña: e.contraseña
         }
-
+        setNoLoged(false)
         datos.map( dato => {
             
             if(datosLogin.email === dato.email && datosLogin.contraseña === dato.contraseña){
@@ -29,7 +31,8 @@ const Login = () => {
             }
             
         })
-        
+
+        setNoLoged(true)
       }
 
   return (
@@ -37,6 +40,11 @@ const Login = () => {
       <main>
     <section>
         <h1 className="titulo">Iniciar sesion</h1>
+        {noLoged && (
+            <div className="registro-exitoso">
+                <p>Credenciales incorrectas</p>
+            </div>
+            )}
         <article className="inicio_sesion_padre">
             <form className="inicio_sesion" onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="nombre_correo">Correo Electronico

@@ -1,11 +1,11 @@
 import React from 'react'
-import { useRouteError, NavLink } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import snitch from "../img/snitch.png"
 import  HeadNav from '../components/HeadNav'
 import  FootNav from '../components/FootNav'
 
 const Error = () => {
-    const error = useRouteError()
+    
   return (
     <div>
       <HeadNav/>

@@ -1,15 +1,14 @@
 import React,{useEffect,useState} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import noimage from '../img/noimage.png';
-import fav from '../img/fav.svg';
-import nofav from '../img/nofav.svg';
-import BotonTop from '../components/BotonTop';
+import noimage from '../img/noimage.png'
+import fav from '../img/fav.svg'
+import nofav from '../img/nofav.svg'
+import BotonTop from '../components/BotonTop'
 import { useUserContext } from "../context/UserContext"
 
 const Favoritos = () => {
   const {user, setUser} = useUserContext()
   const navigate = useNavigate()
-
   const [showLoading, setShowLoading] = useState(false)
   const [visibleCount, setVisibleCount] = useState(21)
   const [loading, setLoading] = useState(false)
@@ -24,40 +23,43 @@ const Favoritos = () => {
   const email = logedUser[0].email
   const favoritesKey = `favoritos_${email}`
   const listaFavoritos = JSON.parse(localStorage.getItem(favoritesKey)) ? JSON.parse(localStorage.getItem(favoritesKey)) : []
+  const [favoritos, setFavoritos] = useState(listaFavoritos)
 
   const removeFromFavorites = (e, personaje) => {
-    personaje.favBool = false;
-    e.target.src = nofav;
-    const index = listaFavoritos.findIndex((fav) => fav.id === personaje.id);
+    personaje.favBool = false
+    e.target.src = nofav
+    const index = favoritos.findIndex((fav) => fav.id === personaje.id)
     if (index !== -1) {
-      listaFavoritos.splice(index, 1);
-      actualizarFavoritos();
+      const updatedFavoritos = [...favoritos]
+      updatedFavoritos.splice(index, 1)
+      setFavoritos(updatedFavoritos)
+      actualizarFavoritos()
     }
-  };
+  }
 
   const actualizarFavoritos = () => {
-    localStorage.setItem(favoritesKey, JSON.stringify(listaFavoritos));
-  };
+    localStorage.setItem(favoritesKey, JSON.stringify(listaFavoritos))
+  }
 
   const handleScroll = () => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
 
     if (scrollTop + clientHeight >= scrollHeight - 5 && !loading) {
-      setShowLoading(true);
-      setLoading(true);
+      setShowLoading(true)
+      setLoading(true)
       setTimeout(() => {
-        setVisibleCount(visibleCount + 21);
-        setLoading(false);
-        setShowLoading(false);
-      }, 800);
+        setVisibleCount(visibleCount + 21)
+        setLoading(false)
+        setShowLoading(false)
+      }, 800)
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [visibleCount]);
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [visibleCount])
 
   const shouldShowTopButton = listaFavoritos.length > 21
 
@@ -66,16 +68,16 @@ const Favoritos = () => {
       <main>
       <h1 className="titulo">Favoritos</h1>
         <section className='padre_listados'>
-        {listaFavoritos.slice(0, visibleCount).map((item) => {
-          item.favBool = listaFavoritos.some((fav) => fav.id === item.id);
+        {favoritos.slice(0, visibleCount).map((item) => {
+          item.favBool = favoritos.some((fav) => fav.id === item.id)
           if(item.favBool){
             item.favorito = fav
           }else{
             item.favorito = nofav
           }
-          let { id, name, image, favorito } = item;
+          let { id, name, image, favorito } = item
           if (image === "") {
-            image = noimage;
+            image = noimage
           }
         return (
           <article className='elemento' key={id}>

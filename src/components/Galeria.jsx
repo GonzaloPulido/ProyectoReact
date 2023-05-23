@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import noimage from '../img/noimage.png';
-import fav from '../img/fav.svg';
-import nofav from '../img/nofav.svg';
-import BotonTop from './BotonTop';
-import UserContext, { useUserContext } from "../context/UserContext"
+import React, { useState, useEffect } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import noimage from '../img/noimage.png'
+import fav from '../img/fav.svg'
+import nofav from '../img/nofav.svg'
+import BotonTop from './BotonTop'
+import { useUserContext } from "../context/UserContext"
 
 const Galeria = ({ url }) => {
   const {user, setUser} = useUserContext()
@@ -16,7 +16,6 @@ const Galeria = ({ url }) => {
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState([])
-  //const favorites = localStorage.getItem('favoritos') ? JSON.parse(localStorage.getItem('favoritos')) : []
   const [houseFilter, setHouseFilter] = useState('')
   const [ancestryFilter, setAncestryFilter] = useState('')
   const [resetFilters, setResetFilters] = useState(false)
@@ -36,11 +35,11 @@ const Galeria = ({ url }) => {
   
 
   const handleHouseFilterChange = (event) => {
-    setHouseFilter(event.target.value);
+    setHouseFilter(event.target.value)
   }
   
   const handleAncestryFilterChange = (event) => {
-    setAncestryFilter(event.target.value);
+    setAncestryFilter(event.target.value)
   }
 
   const eleccionFuncion = (e, personaje) => {
@@ -48,75 +47,75 @@ const Galeria = ({ url }) => {
       navigate("/register")
     }else{
       if (personaje.favBool) {
-        removeFromFavorites(e, personaje);
+        removeFromFavorites(e, personaje)
       } else {
-        addToFavorites(e, personaje);
+        addToFavorites(e, personaje)
       }
-    };
+    }
     }
     
 
   const addToFavorites = (e, personaje) => {
-    personaje.favBool = true;
-    e.target.src = fav;
-    userFavorites.push(personaje);
-    actualizarFavoritos();
-  };
+    personaje.favBool = true
+    e.target.src = fav
+    userFavorites.push(personaje)
+    actualizarFavoritos()
+  }
 
   const removeFromFavorites = (e, personaje) => {
-    personaje.favBool = false;
-    e.target.src = nofav;
-    const index = userFavorites.findIndex((fav) => fav.id === personaje.id);
+    personaje.favBool = false
+    e.target.src = nofav
+    const index = userFavorites.findIndex((fav) => fav.id === personaje.id)
     if (index !== -1) {
-      userFavorites.splice(index, 1);
-      actualizarFavoritos();
+      userFavorites.splice(index, 1)
+      actualizarFavoritos()
     }
-  };
+  }
 
   const actualizarFavoritos = () => {
-    localStorage.setItem(favoritesKey, JSON.stringify(userFavorites));
-  };
+    localStorage.setItem(favoritesKey, JSON.stringify(userFavorites))
+  }
 
   useEffect(() => {
     const llamarApi = async () => {
-      const respuesta = await fetch(url);
-      const charData = await respuesta.json();
+      const respuesta = await fetch(url)
+      const charData = await respuesta.json()
       if (charData != 'undefined') {
-        setCharacters(charData);
+        setCharacters(charData)
       }
-    };
-    llamarApi();
-  }, []);
+    }
+    llamarApi()
+  }, [])
 
   
 
   const handleScroll = () => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
 
     if (scrollTop + clientHeight >= scrollHeight - 5 && !loading) {
-      setShowLoading(true);
-      setLoading(true);
+      setShowLoading(true)
+      setLoading(true)
       setTimeout(() => {
-        setVisibleCount(visibleCount + 21);
-        setLoading(false);
-        setShowLoading(false);
-      }, 800);
+        setVisibleCount(visibleCount + 21)
+        setLoading(false)
+        setShowLoading(false)
+      }, 800)
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [visibleCount]);
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [visibleCount])
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+    setSearchTerm(event.target.value)
+  }
   useEffect(() => {
-    const results = characters.filter((char) => char.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    setSearchResults(results);
-  }, [searchTerm, characters]);
+    const results = characters.filter((char) => char.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    setSearchResults(results)
+  }, [searchTerm, characters])
 
   const charactersToDisplay = searchTerm ? searchResults.filter((char) => {
     return (char.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
@@ -128,11 +127,11 @@ const Galeria = ({ url }) => {
   })
 
   const handleResetFilters = () => {
-    setHouseFilter('');
-    setAncestryFilter('');
-    setSearchTerm('');
-    setResetFilters(true);
-  };
+    setHouseFilter('')
+    setAncestryFilter('')
+    setSearchTerm('')
+    setResetFilters(true)
+  }
 
   const shouldShowTopButton = charactersToDisplay.length > 21
 
@@ -163,15 +162,15 @@ const Galeria = ({ url }) => {
       </div>  
       <div className='cards'>
       {charactersToDisplay.slice(0, visibleCount).map((item) => {
-          item.favBool = userFavorites.some((fav) => fav.id === item.id);
+          item.favBool = userFavorites.some((fav) => fav.id === item.id)
           if(item.favBool){
             item.favorito = fav
           }else{
             item.favorito = nofav
           }
-          let { id, name, image, favorito } = item;
+          let { id, name, image, favorito } = item
           if (image === "") {
-            image = noimage;
+            image = noimage
           }
         return (
           <article className='elemento' key={id}>

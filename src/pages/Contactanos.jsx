@@ -88,7 +88,10 @@ const Contactanos = () => {
                         },maxLength:{
                             value: 200,
                             message: "Has superado los 200 caracteres disponibles"
-                        }
+                        },pattern: {
+                            value:  /^(?!.*\s{2})[A-Za-z0-9\s]+$/,
+                            message: "Formato incorrecto"
+                          }
 
                     })}
                     />

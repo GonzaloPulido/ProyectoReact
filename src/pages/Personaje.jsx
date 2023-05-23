@@ -1,11 +1,16 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation,NavLink } from 'react-router-dom'
 import noimage from "../img/noimage.png"
 
-const Personaje = (props) => {
-
+const Personaje = () => {
+    
     const location= useLocation()
     const {state} = location
+
+    const handleClick = () => {
+        window.history.back()
+      }
+
   return (
     <div>
         <main>
@@ -51,6 +56,7 @@ const Personaje = (props) => {
                         }
                         </li>
                     </ul>
+                    <button className="volver" onClick={handleClick}>Volver</button>
                 </article>
             </section>
         </main>

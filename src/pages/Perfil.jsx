@@ -13,7 +13,7 @@ const Perfil = () => {
   
   const cerrarSesion = () => {
 
-    localStorage.removeItem("logedUser");
+    localStorage.removeItem("logedUser")
     setUser(false)
     navigate("/")
 

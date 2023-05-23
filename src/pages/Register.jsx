@@ -9,7 +9,7 @@ const Register = () => {
     const {register,handleSubmit,watch,formState:{errors}} = useForm({mode : "onChange"})
 
 
-    const password = useRef({});
+    const password = useRef({})
     password.current = watch("contraseña", "")
     
     const navigate = useNavigate()
@@ -32,7 +32,7 @@ const Register = () => {
 
             setTimeout(() => {
                 navigate("/login")
-              }, 4000)
+              }, 2000)
         
         }
     
@@ -91,7 +91,7 @@ const Register = () => {
                             message: "Es necesario rellenar el campo"
                         },
                         pattern: {
-                            value: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/,
+                            value: /^\d{9}$/,
                             message: "Formato incorrecto"
                         }
                     })}/>

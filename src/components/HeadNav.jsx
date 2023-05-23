@@ -12,7 +12,7 @@ const HeadNav = () => {
 
     const cerrarSesion = () => {
 
-        localStorage.removeItem("logedUser");
+        localStorage.removeItem("logedUser")
         setUser(false)
         navigate("/")
     
@@ -27,6 +27,7 @@ const HeadNav = () => {
                     <li><NavLink to='/estudiantes'>Estudiantes</NavLink></li>
                     <li><NavLink to='/trabajadores'>Trabajadores</NavLink></li>
                     <li><NavLink to='/casas'>Casas</NavLink></li>
+                    {user && (<li><NavLink to='/favoritos'>Favs</NavLink></li>)}
                 </ul>
             </nav>
             <ul className="iconos_head">
@@ -41,6 +42,7 @@ const HeadNav = () => {
                             <li><NavLink to='/estudiantes'>Estudiantes</NavLink></li>
                             <li><NavLink to='/trabajadores'>Trabajadores</NavLink></li>
                             <li><NavLink to='/casas'>Casas</NavLink></li>
+                            {user && (<li><NavLink to='/favoritos'>Favs</NavLink></li>)}
                             <li><a href="https://www.aepd.es/es/politica-de-privacidad-y-aviso-legal">Politica de privacidad</a></li>
                             <li><a href="https://www.aepd.es/es/politica-de-privacidad-y-aviso-legal">Aviso legal</a></li>
                             <li><NavLink to='/error'>Cookies</NavLink></li>

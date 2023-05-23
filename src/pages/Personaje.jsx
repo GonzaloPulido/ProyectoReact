@@ -6,7 +6,6 @@ const Personaje = (props) => {
 
     const location= useLocation()
     const {state} = location
-  console.log(state.item.name)
   return (
     <div>
         <main>

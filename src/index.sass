@@ -67,9 +67,10 @@ header
 // --------- HEADER ---------
 // --------- FOOTER ---------
 footer
+    position: fixed
     bottom: 0
     width: 100%
-    height: 15vh
+    height: 6vh
     padding: 1%
     background-image: url("./img/fondo_head.png")
     display: flex
@@ -80,9 +81,9 @@ footer
 .apartados_foot
     display: flex
     align-items: center
-    justify-content: space-between
+    justify-content: space-around
     font-family: "Harry P"
-    font-size: 2.7rem
+    font-size: 2rem
 
 .iconos_foot
     width: 5%
@@ -93,7 +94,7 @@ footer
 // --------- FOOTER ---------
 // --------- MAIN ---------
 main
-    min-height: 85vh
+    min-height: 94vh
     padding: 3%
     background-image: url("./img/fondo_body.jpg")
     background-repeat: no-repeat
@@ -145,6 +146,7 @@ main
 // --------- TITULO ---------
 // --------- LISTADOS ---------
 .contenedor_busqueda 
+    bottom: 30px
     position: absolute
     margin: auto
     width: 40%
@@ -169,6 +171,7 @@ main
 
 
 .cards
+    bottom: 2vh
     width: 100%
     margin-top: 100px
     display: flex
@@ -329,7 +332,16 @@ main
 
 // --------- PERSONAJE ---------
 // --------- FAVORITO ---------
-
+.fav_listado
+    bottom: 2vh
+    margin-top: 20px
+    display: flex
+    align-items: center
+    justify-content: space-evenly
+    flex-wrap: wrap
+    height: 100%
+    gap: 1rem
+    position: relative
 // --------- FAVORITO ---------
 // --------- REGISTRO ---------
 .registro_padre
@@ -626,6 +638,18 @@ label
         font-size: 2.2rem
     // --------- TITULO ---------
     // --------- LISTADOS ---------
+    .contenedor_busqueda 
+        bottom: 16px
+        position: absolute
+        margin: auto
+        width: 40%
+        height: 100%
+        display: flex
+        flex-direction: column
+        align-items: center 
+    .cards
+        bottom: 20px
+        
     .elemento
         width: 35%
         min-height: 25vh
@@ -646,17 +670,19 @@ label
 
     // --------- LISTADOS ---------
     // --------- CASAS ---------
+    
     .section_casas
         width: 60%
+        height: 20%
         margin: auto
     .casas
         gap: 5rem
         flex-wrap: wrap
-        font-size: 1.3rem
+        font-size: 1.2rem
     .titulo_casa
         margin-top: 10%
     .logo_casas
-        width: 90%
+        width: 75%
 
     // --------- CASAS ---------
     // --------- PERSONAJE ---------
@@ -664,7 +690,7 @@ label
         text-align: center
         flex-direction: column
         margin: auto
-        width: 50%
+        width: 45%
         padding: 2%
         font-size: 1.5rem
     .elementos_personaje>ul
@@ -682,7 +708,7 @@ label
 
     .div_personaje
         padding: 2%
-        width: 30%
+        width: 25%
 
     .foto_personaje
         max-width: 20vh
@@ -690,6 +716,13 @@ label
         width: 100%
 
     // --------- PERSONAJE ---------
+    // --------- PERFIL ---------
+    .perfil_container
+        width: 56%
+
+    .botonPerfil
+        width: 15%
+    // --------- PERFIL ---------
     // --------- REGISTRO ----------
     .registro_padre
         width: 35%
@@ -903,6 +936,7 @@ label
     // --------- REGISTRO ----------
     .registro_padre
         width: 40%
+        padding: 1%
     .registro
         width: 100%
         font-size: 1.5rem
@@ -913,6 +947,10 @@ label
 
     .enlace_registro
         font-size: 1.1rem
+    .registro > label
+        width: 100%
+    .error
+        font-size: 17px
 
     // --------- REGISTRO ---------
     // --------- LOGIN ---------

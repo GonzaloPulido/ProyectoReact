@@ -6,7 +6,7 @@ const FootNav = () => {
   return (
     <div>
         <footer>
-            <a href="index.html"><img src={hogwarts} className="logo" alt="Logo de hogwarts"/></a>
+            {/* <a href="index.html"><img src={hogwarts} className="logo" alt="Logo de hogwarts"/></a> */}
             <nav className="nav_footer">
                 <ul className="apartados_foot">
                     <li className="enlaces_foot"><a href="https://www.aepd.es/es/politica-de-privacidad-y-aviso-legal">Politica de privacidad</a></li>

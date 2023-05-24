@@ -70,7 +70,7 @@ const Favoritos = () => {
     <>
       <main>
       <h1 className="titulo">Favoritos</h1>
-        <section className='padre_listados'>
+        <section className='fav_listado'>
         {favoritos.slice(0, visibleCount).map((item) => {
           item.favBool = favoritos.some((fav) => fav.id === item.id)
           if(item.favBool){

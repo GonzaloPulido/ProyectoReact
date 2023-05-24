@@ -7,11 +7,11 @@ import { faRightToBracket, faRegistered, faPowerOff } from '@fortawesome/free-so
 
 
 const HeadNav = () => {
+    // Header dinamico segun si el usuario esta logueado.
     const {user, setUser} = useUserContext()
     const navigate = useNavigate()
 
     const cerrarSesion = () => {
-
         localStorage.removeItem("logedUser")
         setUser(false)
         navigate("/")

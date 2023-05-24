@@ -1,9 +1,8 @@
 import React from 'react'
-import { useLocation,NavLink } from 'react-router-dom'
+import { useLocation} from 'react-router-dom'
 import noimage from "../img/noimage.png"
 
 const Personaje = () => {
-    
     const location= useLocation()
     const {state} = location
 

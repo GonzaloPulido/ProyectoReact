@@ -14,19 +14,19 @@ const Casas = () => {
     <section className="section_casas">
         <article className="casas">
             <div className="container_casa">
-            <NavLink to='/gryffindor'><img src={gryffindor} className="logo_casas" alt="Logo Gryffindor"/></NavLink>
+            <NavLink to='/casa' state={{ casa:'gryffindor'}}><img src={gryffindor} className="logo_casas" alt="Logo Gryffindor"/></NavLink>
             <h2 className="titulo_casa">GRYFFINDOR</h2>
             </div>
             <div className="container_casa">
-            <NavLink to='/ravenclaw'><img src={ravenclaw} className="logo_casas" alt="Logo Ravenclaw"/></NavLink>
+            <NavLink to='/casa' state={{ casa:'ravenclaw'}}><img src={ravenclaw} className="logo_casas" alt="Logo Ravenclaw"/></NavLink>
                 <h2 className="titulo_casa">RAVENCLAW</h2>
             </div>
             <div className="container_casa">
-            <NavLink to='/hufflepuff'><img src={hufflepuff} className="logo_casas" alt="Logo Hufflepuff"/></NavLink>
+            <NavLink to='/casa' state={{ casa:'hufflepuff'}}><img src={hufflepuff} className="logo_casas" alt="Logo Hufflepuff"/></NavLink>
                 <h2 className="titulo_casa">HUFFLEPUFF</h2>
             </div>
             <div className="container_casa">
-            <NavLink to='/slytherin'><img src={slytherin} className="logo_casas" alt="Logo Slytherin"/></NavLink>
+            <NavLink to='/casa' state={{ casa:'slytherin'}}><img src={slytherin} className="logo_casas" alt="Logo Slytherin"/></NavLink>
                 <h2 className="titulo_casa">SLYTHERIN</h2>
             </div>
         </article>

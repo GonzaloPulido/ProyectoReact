@@ -6,16 +6,13 @@ import InicioLay from '../layouts/InicioLay'
 import Estudiantes from '../pages/Estudiantes'
 import Trabajadores from '../pages/Trabajadores'
 import Casas from '../pages/Casas'
-import Gryffindor from '../pages/Gryffindor'
-import Ravenclaw from '../pages/Ravenclaw'
-import Slytherin from '../pages/Slytherin'
-import Hufflepuff from '../pages/Hufflepuff'
 import Personaje from '../pages/Personaje'
 import Contactanos from '../pages/Contactanos'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 import Perfil from '../pages/Perfil'
 import Favoritos from '../pages/Favoritos'
+import Casa from '../pages/Casa'
 
 export const router = createBrowserRouter([
   {
@@ -45,22 +42,6 @@ export const router = createBrowserRouter([
         element: <Casas />,
       },
       {
-        path: '/gryffindor',
-        element: <Gryffindor />,
-      },
-      {
-        path: '/hufflepuff',
-        element: <Hufflepuff />,
-      },
-      {
-        path: '/ravenclaw',
-        element: <Ravenclaw />,
-      },
-      {
-        path: '/slytherin',
-        element: <Slytherin />,
-      },
-      {
         path: '/personaje',
         element: <Personaje />,
       },
@@ -83,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: '/favoritos',
         element: <Favoritos />,
+      },
+      {
+        path: '/casa',
+        element: <Casa />,
       },
 
     ],

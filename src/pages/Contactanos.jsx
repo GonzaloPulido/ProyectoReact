@@ -16,15 +16,13 @@ const Contactanos = () => {
             email: e.email,
             mensaje: e.mensaje
         }
-
+        
         setMensaje(JSON.parse(window.localStorage.getItem(localStorageId)))
         mensaje.push(datosContacto)
         window.localStorage.setItem(localStorageId, JSON.stringify(mensaje))
-
         navigate("/")
     
 }
-
   return (
     <div>
         <main>
@@ -92,10 +90,8 @@ const Contactanos = () => {
                             value:  /^(?!.*\s{2})[A-Za-z0-9\s]+$/,
                             message: "Formato incorrecto"
                           }
-
                     })}
                     />
-                     
                 </label>
                 {errors.mensaje && <span className="error">{errors.mensaje.message}</span>} 
                 <label for="enviar">

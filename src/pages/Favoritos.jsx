@@ -7,6 +7,9 @@ import BotonTop from '../components/BotonTop'
 import { useUserContext } from "../context/UserContext"
 
 const Favoritos = () => {
+  // Pagina de favoritos de un usuario en concreto
+  // Incluye la logica de infiniteScroll y la funcion de eliminar favoritos
+  
   const {user, setUser} = useUserContext()
   const navigate = useNavigate()
   const [showLoading, setShowLoading] = useState(false)

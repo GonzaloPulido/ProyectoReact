@@ -7,6 +7,8 @@ import BotonTop from './BotonTop'
 import { useUserContext } from "../context/UserContext"
 
 const Galeria = ({ url }) => {
+  // En este componente esta la logica donde se muestran los personajes, la logica de favoritos
+  // la logica de infiniteScroll y los filtros de busqueda
   const {user, setUser} = useUserContext()
   const navigate = useNavigate()
 
@@ -28,12 +30,8 @@ const Galeria = ({ url }) => {
     favoritesKey = `favoritos_${email}`
   }
   
-  
-  
-  
   const userFavorites = localStorage.getItem(favoritesKey) ? JSON.parse(localStorage.getItem(favoritesKey)) : []
   
-
   const handleHouseFilterChange = (event) => {
     setHouseFilter(event.target.value)
   }
@@ -54,7 +52,6 @@ const Galeria = ({ url }) => {
     }
     }
     
-
   const addToFavorites = (e, personaje) => {
     personaje.favBool = true
     e.target.src = fav
@@ -86,8 +83,6 @@ const Galeria = ({ url }) => {
     }
     llamarApi()
   }, [])
-
-  
 
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
